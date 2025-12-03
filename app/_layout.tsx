@@ -12,12 +12,12 @@ export default function RootLayout() {
     <>
       <SafeAreaView
         edges={["top"]}
-        style={{ flex: 1, backgroundColor: "#161F3C" }}
+        style={{ flex: 1, backgroundColor: "#b1b1b3ff" }}
       >
         {!hideHeader && <Header />}
         <Stack
           screenOptions={{
-            headerShown: false, // 👈 apply globally
+            headerShown: false,
           }}
         />
         {!hideNavigationBar && <NavigationBar />}
