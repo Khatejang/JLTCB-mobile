@@ -1,12 +1,12 @@
-import { Text, TouchableOpacity, View, Image, ImageBackground } from "react-native";
+import { Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
 import styles from "../styles/landing-page/landing-page-styles";
 
 import { useRouter } from "expo-router";
 
-import SocialIcons from "../components/landingPage/socialIcons"
 import { Ionicons } from "@expo/vector-icons";
+import SocialLogos from "@/components/landingPage/SocialLogos";
 
 export default function Index() {
   const router = useRouter();
@@ -20,12 +20,12 @@ export default function Index() {
         <View style={styles.whiteOverlay} />
         <View style={styles.container}>
           <Image
-            source={require("../assets/blackLogo/logo.png")}
+            source={require("../assets/blackLogos/logo.png")}
             style={styles.logoImage}
             resizeMode="contain"
           />
           <Image
-            source={require("../assets/blackLogo/word.png")}
+            source={require("../assets/blackLogos/word.png")}
             style={styles.wordImage}
             resizeMode="cover"
           />
@@ -73,7 +73,7 @@ export default function Index() {
           </View>
         </View>
         <View>
-          <SocialIcons></SocialIcons>
+          <SocialLogos></SocialLogos>
         </View>
       </ImageBackground>
     </>

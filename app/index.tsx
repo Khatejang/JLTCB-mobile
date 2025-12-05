@@ -17,16 +17,16 @@ export default function SplashScreen() {
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const imagesToLoad = [
-    require("../assets/blackLogo/fullLogo.png"),
+    require("../assets/blackLogos/fullLogo.png"),
     require("../assets/landingPage.png"),
-    require("../assets/blackLogo/logo.png"),
-    require("../assets/blackLogo/word.png"),
-    require("../assets/socialIcons/facebook.png"),
-    require("../assets/socialIcons/instagram.png"),
-    require("../assets/socialIcons/youtube.png"),
-    require("../assets/socialIcons/tiktok.png"),
-    require("../assets/socialIcons/twitter.png"),
-    require("../assets/socialIcons/linkedIn.png"),
+    require("../assets/blackLogos/logo.png"),
+    require("../assets/blackLogos/word.png"),
+    require("../assets/socialLogos/facebook.png"),
+    require("../assets/socialLogos/instagram.png"),
+    require("../assets/socialLogos/youtube.png"),
+    require("../assets/socialLogos/tiktok.png"),
+    require("../assets/socialLogos/twitter.png"),
+    require("../assets/socialLogos/linkedIn.png"),
   ];
 
   useEffect(() => {
@@ -124,7 +124,7 @@ export default function SplashScreen() {
 
       <Animated.View style={[styles.logoContainer, { opacity: fadeAnim }]}>
         <Image
-          source={require("../assets/blackLogo/fullLogo.png")}
+          source={require("../assets/blackLogos/fullLogo.png")}
           style={{ width: 300, height: 220 }}
           resizeMode="contain"
         />

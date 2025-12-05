@@ -6,7 +6,7 @@ export default function Header(){
       <>
         <View style={styles.container}>
           <Image
-            source={require("../assets/whiteLogo/fullLogo.png")}
+            source={require("../assets/whiteLogos/fullLogo.png")}
             style={styles.logo}
             resizeMode="contain"
           />
