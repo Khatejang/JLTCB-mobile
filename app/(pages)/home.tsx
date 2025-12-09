@@ -1,15 +1,14 @@
-import { Text } from "react-native"
-import NewsUpdates from "@/components/home/NewsUpdataes"
-import VideoReels from "@/components/home/VideoReels"
 import GovermentLogos from "@/components/home/GovernmentLogos"
+import NewsUpdates from "@/components/home/NewsUpdates"
+import VideoReels from "@/components/home/video/VideoReels"
+import { Text, View } from "react-native"
 
 export default function Home(){
     return(
-        <>
-        <Text>Home</Text>
+        <View style={{backgroundColor: "#fff"}}>
         <GovermentLogos></GovermentLogos>
         <VideoReels></VideoReels>
         <NewsUpdates></NewsUpdates>
-        </>
+        </View>
     )
 }

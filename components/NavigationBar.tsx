@@ -55,16 +55,16 @@ export default function NavigationBar() {
             <TouchableOpacity onPress={() => navigateTo("/governance")}>
               <Text style={leftCurveStyles.modalOption}>Governance</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/aboutUs")}>
+            <TouchableOpacity onPress={() => navigateTo("/about_us")}>
               <Text style={leftCurveStyles.modalOption}>About Us</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/contactUs")}>
+            <TouchableOpacity onPress={() => navigateTo("/contact_us")}>
               <Text style={leftCurveStyles.modalOption}>Contact Us</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigateTo("/services")}>
               <Text style={leftCurveStyles.modalOption}>Services</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/portsCatered")}>
+            <TouchableOpacity onPress={() => navigateTo("/ports_catered")}>
               <Text style={leftCurveStyles.modalOption}>Ports Catered</Text>
             </TouchableOpacity>
           </View>
@@ -75,13 +75,13 @@ export default function NavigationBar() {
         <View style={rightCurveStyles.container}>
           <RightCurveMenu style={rightCurveStyles.curve} />
           <View style={rightCurveStyles.menuOptions}>
-            <TouchableOpacity onPress={() => navigateTo("/getQoute")}>
+            <TouchableOpacity onPress={() => navigateTo("/get_qoute")}>
               <Text style={rightCurveStyles.modalOption}>Get Qoute</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/getAppointment")}>
+            <TouchableOpacity onPress={() => navigateTo("/get_appointment")}>
               <Text style={rightCurveStyles.modalOption}>Get Appointment</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/ahtnChecker")}>
+            <TouchableOpacity onPress={() => navigateTo("/ahtn_checker")}>
               <Text style={rightCurveStyles.modalOption}>AHTN Checker</Text>
             </TouchableOpacity>
             <TouchableOpacity>

@@ -20,12 +20,12 @@ export default function Index() {
         <View style={styles.whiteOverlay} />
         <View style={styles.container}>
           <Image
-            source={require("../assets/blackLogos/logo.png")}
+            source={require("../assets/black_logos/logo.png")}
             style={styles.logoImage}
             resizeMode="contain"
           />
           <Image
-            source={require("../assets/blackLogos/word.png")}
+            source={require("../assets/black_logos/word.png")}
             style={styles.wordImage}
             resizeMode="cover"
           />

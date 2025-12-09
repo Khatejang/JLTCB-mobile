@@ -27,6 +27,7 @@ export default StyleSheet.create({
     height: "100%",
   },
   borderBottom: {
-    borderBottomWidth: 4
+    height: 4,
+     width: "100%",
   }
 });
