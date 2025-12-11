@@ -73,7 +73,7 @@ export default function Index() {
           </View>
         </View>
         <View>
-          <SocialLogos></SocialLogos>
+          <SocialLogos/>
         </View>
       </ImageBackground>
     </>
