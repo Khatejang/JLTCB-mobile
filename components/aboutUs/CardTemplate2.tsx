@@ -7,7 +7,7 @@ import {
   Text,
   Image,
 } from "react-native";
-import { Card, Title } from "react-native-paper";
+import { Card } from "react-native-paper";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 export default function CardTemplate2() {

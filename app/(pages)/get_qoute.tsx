@@ -1,8 +1,10 @@
+import Form from "@/components/getQoute/Form";
 import { Text, ImageBackground, View,  } from "react-native";
 
 export default function GetQoute() {
   return (
     <>
+    {/* banner */}
       <ImageBackground
         source={require("../../assets/banners/large.png")}
         style={{
@@ -16,7 +18,7 @@ export default function GetQoute() {
             color: "#EE9034",
             fontSize: 20,
             fontWeight: 500,
-            marginBottom: 5,
+            marginBottom: 4,
           }}
         >
           Get Qoute
@@ -39,6 +41,10 @@ export default function GetQoute() {
           </Text>
         </View>
       </ImageBackground>
+      {/* content */}
+      <Form></Form>
     </>
   );
 }
+
+
