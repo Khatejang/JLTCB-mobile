@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tempfixproject"
+    namespace = "com.jltcb.jtlcbapp"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.tempfixproject"
+        applicationId = "com.jltcb.jtlcbapp"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
