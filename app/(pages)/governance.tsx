@@ -36,7 +36,7 @@ export default function Governance() {
       name: "PHILIPPINE ECONOMIC ZONE AUTHORITY",
     },
     {
-      logo: require("../../assets/government/ppaLogo.jpg"),
+      logo: require("../../assets/government/ppaLogo.png"),
       name: "PHILIPPINE PORTS AUTHORITY",
     },
     {

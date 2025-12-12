@@ -11,7 +11,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.spcf.jltcb",
+      "package": "com.jltcb.jltcbapp",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE"
       },

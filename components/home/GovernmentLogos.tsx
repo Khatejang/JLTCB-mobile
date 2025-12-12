@@ -9,7 +9,7 @@ export default function GovermentLogos() {
     require("../../assets/government/dtiLogo.png"),
     require("../../assets/government/pccbiLogo.png"),
     require("../../assets/government/pezaLogo.png"),
-    require("../../assets/government/ppaLogo.jpg"),
+    require("../../assets/government/ppaLogo.png"),
     require("../../assets/government/prcLogo.png"),
   ];
   return (

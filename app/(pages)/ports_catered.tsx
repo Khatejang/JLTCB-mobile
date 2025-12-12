@@ -1,4 +1,5 @@
-import { Text, ImageBackground } from "react-native";
+import { Text, ImageBackground, Image } from "react-native";
+import Ports from "@/components/portsCatered/Ports";
 
 export default function PortsCatered() {
   return (
@@ -6,7 +7,7 @@ export default function PortsCatered() {
       <ImageBackground
         source={require("../../assets/banners/small.png")}
         style={{
-          aspectRatio: 3, 
+          aspectRatio: 3,
           paddingVertical: 30,
           paddingHorizontal: 40,
         }}
@@ -19,9 +20,15 @@ export default function PortsCatered() {
             fontWeight: 500,
           }}
         >
-          PORTS CATERED 
+          PORTS CATERED
         </Text>
       </ImageBackground>
+      <Image
+        source={require("../../assets/ports_catered/map.png")}
+        resizeMode="cover"
+        style={{ height: "70%", width:"100%", marginTop: -30 }}
+      />
+      <Ports/>
     </>
   );
 }
