@@ -23,11 +23,6 @@ export default function NavigationBar() {
     }
   };
 
-  const navigateTo = (route: string) => {
-    setLeftMenuVisible(false);
-    setRightMenuVisible(false);
-    router.push(route);
-  };
   return (
     <>
       {/* Navigation Bar */}
@@ -52,19 +47,49 @@ export default function NavigationBar() {
         <View style={leftCurveStyles.container}>
           <LeftCurveMenu style={leftCurveStyles.curve} />
           <View style={leftCurveStyles.menuOptions}>
-            <TouchableOpacity onPress={() => navigateTo("/governance")}>
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/governance");
+                setLeftMenuVisible(false);
+                setRightMenuVisible(false);
+              }}
+            >
               <Text style={leftCurveStyles.modalOption}>Governance</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/about_us")}>
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/about_us");
+                setLeftMenuVisible(false);
+                setRightMenuVisible(false);
+              }}
+            >
               <Text style={leftCurveStyles.modalOption}>About Us</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/contact_us")}>
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/contact_us");
+                setLeftMenuVisible(false);
+                setRightMenuVisible(false);
+              }}
+            >
               <Text style={leftCurveStyles.modalOption}>Contact Us</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/services")}>
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/services");
+                setLeftMenuVisible(false);
+                setRightMenuVisible(false);
+              }}
+            >
               <Text style={leftCurveStyles.modalOption}>Services</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/ports_catered")}>
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/ports_catered");
+                setLeftMenuVisible(false);
+                setRightMenuVisible(false);
+              }}
+            >
               <Text style={leftCurveStyles.modalOption}>Ports Catered</Text>
             </TouchableOpacity>
           </View>
@@ -75,13 +100,31 @@ export default function NavigationBar() {
         <View style={rightCurveStyles.container}>
           <RightCurveMenu style={rightCurveStyles.curve} />
           <View style={rightCurveStyles.menuOptions}>
-            <TouchableOpacity onPress={() => navigateTo("/get_qoute")}>
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/get_qoute");
+                setLeftMenuVisible(false);
+                setRightMenuVisible(false);
+              }}
+            >
               <Text style={rightCurveStyles.modalOption}>Get Qoute</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/get_appointment")}>
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/get_appointment");
+                setLeftMenuVisible(false);
+                setRightMenuVisible(false);
+              }}
+            >
               <Text style={rightCurveStyles.modalOption}>Get Appointment</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateTo("/ahtn_checker")}>
+            <TouchableOpacity
+              onPress={() => {
+                router.push("/ahtn_checker");
+                setLeftMenuVisible(false);
+                setRightMenuVisible(false);
+              }}
+            >
               <Text style={rightCurveStyles.modalOption}>AHTN Checker</Text>
             </TouchableOpacity>
             <TouchableOpacity>
