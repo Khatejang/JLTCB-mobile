@@ -13,6 +13,7 @@
     "android": {
       "package": "com.jltcb.jltcbapp",
       "adaptiveIcon": {
+        "foregroundImage": "./assets/appImage.png",
         "backgroundColor": "#E6F4FE"
       },
       "edgeToEdgeEnabled": true,
