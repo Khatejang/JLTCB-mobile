@@ -4,19 +4,19 @@ import { Card } from "react-native-paper";
 export default function RowServices() {
   const data = [
     {
-      image: require("../../../assets/services/row/1.png"),
+      image: require("../../../src/assets/services/row/1.png"),
       title: "INTERNATIONAL FREIGHT FORWARDING",
     },
     {
-      image: require("../../../assets/services/row/2.png"),
+      image: require("../../../src/assets/services/row/2.png"),
       title: "DOMESTIC FREIGHT FORWARDING",
     },
     {
-      image: require("../../../assets/services/row/3.png"),
+      image: require("../../../src/assets/services/row/3.png"),
       title: "TRUCKING SERVICES",
     },
     {
-      image: require("../../../assets/services/row/4.png"),
+      image: require("../../../src/assets/services/row/4.png"),
       title: "PROJECT CARGO",
     },
   ];

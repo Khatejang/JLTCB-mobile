@@ -6,13 +6,13 @@ export default function Index() {
     <>
     {/* banner */}
       <ImageBackground
-        source={require("../../../assets/banners/large.png")}
+        source={require("../../../src/assets/banners/large.png")}
         style={{
           padding:20,
           aspectRatio: 2,
         }}
-        imageStyle={{ resizeMode: "cover" }}
-      >
+       resizeMode= "cover" 
+       >
         <Text
           style={{
             color: "#EE9034",

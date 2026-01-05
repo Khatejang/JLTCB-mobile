@@ -1,5 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
-import { View, StyleSheet, Dimensions, Animated, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Dimensions, Image } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withDelay,
+  runOnJS,
+} from "react-native-reanimated";
 import { useRouter } from "expo-router";
 import { Asset } from "expo-asset";
 
@@ -8,25 +15,25 @@ const { width, height } = Dimensions.get("window");
 export default function SplashScreen() {
   const router = useRouter();
 
-  const rotateAnim = useRef(new Animated.Value(0)).current;
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-  const leftAnim = useRef(new Animated.Value(0)).current;
-  const rightAnim = useRef(new Animated.Value(0)).current;
-  const finalFade = useRef(new Animated.Value(0)).current;
+  const rotateAnim = useSharedValue(0);
+  const fadeAnim = useSharedValue(0);
+  const leftAnim = useSharedValue(0);
+  const rightAnim = useSharedValue(0);
+  const finalFade = useSharedValue(0);
 
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const imagesToLoad = [
-    require("../assets/black_logos/full_logo.png"),
-    require("../assets/landingPage.png"),
-    require("../assets/black_logos/logo.png"),
-    require("../assets/black_logos/word.png"),
-    require("../assets/social_logos/facebook.png"),
-    require("../assets/social_logos/instagram.png"),
-    require("../assets/social_logos/youtube.png"),
-    require("../assets/social_logos/tiktok.png"),
-    require("../assets/social_logos/twitter.png"),
-    require("../assets/social_logos/linkedIn.png"),
+    require("../src/assets/black_logos/full_logo.png"),
+    require("../src/assets/landingPage.png"),
+    require("../src/assets/black_logos/logo.png"),
+    require("../src/assets/black_logos/word.png"),
+    require("../src/assets/social_logos/facebook.png"),
+    require("../src/assets/social_logos/instagram.png"),
+    require("../src/assets/social_logos/youtube.png"),
+    require("../src/assets/social_logos/tiktok.png"),
+    require("../src/assets/social_logos/twitter.png"),
+    require("../src/assets/social_logos/linkedIn.png"),
   ];
 
   useEffect(() => {
@@ -41,90 +48,76 @@ export default function SplashScreen() {
   }, []);
 
   useEffect(() => {
-    if (!imagesLoaded) return; // wait for images
+    if (!imagesLoaded) return;
 
-    Animated.timing(rotateAnim, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start(() => {
-      Animated.parallel([
-        Animated.timing(leftAnim, {
-          toValue: -width * 2,
-          duration: 800,
-          useNativeDriver: true,
-        }),
-        Animated.timing(rightAnim, {
-          toValue: width * 2,
-          duration: 800,
-          useNativeDriver: true,
-        }),
-      ]).start(() => {
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 800,
-          useNativeDriver: true,
-        }).start(() => {
-          setTimeout(() => {
-            Animated.timing(fadeAnim, {
-              toValue: 0,
-              duration: 800,
-              useNativeDriver: true,
-            }).start(() => {
-              Animated.timing(finalFade, {
-                toValue: 1,
-                duration: 500,
-                useNativeDriver: false,
-              }).start(() => {
-                router.replace("./landing-page")
-              });
-            });
-          }, 1000);
-        });
-      });
-    });
+    rotateAnim.value = withTiming(26, { duration: 1000 });
+
+    leftAnim.value = withDelay(1000, withTiming(-width * 2, { duration: 800 }));
+
+    rightAnim.value = withDelay(1000, withTiming(width * 2, { duration: 800 }));
+
+    fadeAnim.value = withDelay(1800, withTiming(1, { duration: 800 }));
+
+    fadeAnim.value = withDelay(2800, withTiming(0, { duration: 800 }));
+
+    finalFade.value = withDelay(
+      3600,
+      withTiming(1, { duration: 500 }, () => {
+        runOnJS(router.replace)("./landing-page");
+      })
+    );
   }, [imagesLoaded]);
 
-  const rotate = rotateAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["0deg", "26deg"],
-  });
+const rotateStyle = useAnimatedStyle(() => ({
+  transform: [{ rotate: `${rotateAnim.value}deg` }],
+}));
 
-  const finalBackgroundColor = finalFade.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["transparent", "#161F3C"],
-  });
+const leftStyle = useAnimatedStyle(() => ({
+  transform: [{ translateX: leftAnim.value }],
+}));
+
+const rightStyle = useAnimatedStyle(() => ({
+  transform: [{ translateX: rightAnim.value }],
+}));
+
+const fadeStyle = useAnimatedStyle(() => ({
+  opacity: fadeAnim.value,
+}));
+
+const backgroundStyle = useAnimatedStyle(() => ({
+  backgroundColor:
+    finalFade.value === 1 ? "#161F3C" : "transparent",
+}));
 
   return (
     <Animated.View
-      style={[styles.container, { backgroundColor: finalBackgroundColor }]}
+      style={[styles.container, backgroundStyle ]}
     >
       <Animated.View
-        style={[styles.halfContainer, { transform: [{ rotate }] }]}
+        style={[styles.halfContainer, rotateStyle]}
       >
         <Animated.View
           style={[
             styles.half,
             {
-              backgroundColor: "#EE9034",
-              transform: [{ translateX: leftAnim }],
-            },
+              backgroundColor: "#EE9034"
+            }, leftStyle
           ]}
         />
         <Animated.View
           style={[
             styles.half,
             {
-              backgroundColor: "#161F3C",
-              transform: [{ translateX: rightAnim }],
+              backgroundColor: "#161F3C"
             },
+            rightStyle
           ]}
         />
       </Animated.View>
 
-      <Animated.View style={[styles.logoContainer, { opacity: fadeAnim }]}>
+      <Animated.View style={[styles.logoContainer, fadeStyle]}>
         <Image
-          source={require("../assets/black_logos/full_logo.png")}
+          source={require("../src/assets/black_logos/full_logo.png")}
           style={{ width: 300, height: 220 }}
           resizeMode="contain"
         />

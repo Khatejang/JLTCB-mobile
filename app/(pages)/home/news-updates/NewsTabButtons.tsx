@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import styles from "../styles";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function NewsTabButtons() {
   const [active, setActive] = useState(0);
@@ -26,3 +25,32 @@ export default function NewsTabButtons() {
   );
 }
 
+const styles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: "row",
+    borderBottomWidth: 3,
+    borderColor: "#9D9D9D",
+    marginBottom: 10,
+  },
+  button: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: 5,
+    paddingTop: 10,
+  },
+  buttonText: {
+    fontSize: 10,
+    color: "#555",
+  },
+  activeText: {
+    color: "#000",
+    fontWeight: "600",
+  },
+  underline: {
+    height: 3,
+    width: "100%",
+    backgroundColor: "#EE9034",
+    position: "absolute",
+    bottom: -3,
+  }
+});

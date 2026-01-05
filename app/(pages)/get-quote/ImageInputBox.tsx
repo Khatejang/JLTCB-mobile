@@ -1,19 +1,13 @@
-import { useState, Dispatch, SetStateAction } from "react";
-import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
-import * as ImagePicker from "expo-image-picker";
 import { Ionicons } from "@expo/vector-icons";
-
-type ContactFormData = {
-  fullName?: string;
-  email?: string;
-  contactNumber?: string;
-  message?: string;
-  imageUri?: string;
-};
+import * as ImagePicker from "expo-image-picker";
+import { Dispatch, SetStateAction, useState } from "react";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ContactFormData } from "../../../src/types/get-quote";
 
 type ImageInputBoxProps = {
   setFormData: Dispatch<SetStateAction<ContactFormData>>;
 };
+
 export default function ImageInputBox({ setFormData }: ImageInputBoxProps) {
   const [image, setImage] = useState<string | null>(null);
 

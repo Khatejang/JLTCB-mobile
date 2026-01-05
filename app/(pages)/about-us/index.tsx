@@ -1,12 +1,12 @@
 import { Image, Text, View } from "react-native";
 import CardTemplate2 from "@/app/(pages)/about-us/CoreValuesTemplate";
 import Pillars from "@/app/(pages)/about-us/PrincipleList";
-import styles from "./styles";
+import styles from "./indexStyles";
 export default function Index() {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../../assets/about_us/header.png")}
+        source={require("../../../src/assets/about_us/header.png")}
         style={styles.imageHeader}
       />
       <Text

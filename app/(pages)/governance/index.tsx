@@ -16,42 +16,42 @@ const openLink = (url: string) => {
 export default function Index() {
   const logos = [
     {
-      logo: require("../../../assets/government/birLogo.png"),
+      logo: require("../../../src/assets/government/birLogo.png"),
       name: "BUREAU OF INTERNAL REVENUE",
       url: "https://www.bir.gov.ph/home",
     },
     {
-      logo: require("../../../assets/government/bocLogo.png"),
+      logo: require("../../../src/assets/government/bocLogo.png"),
       name: "BUREAU OF CUSTOMS",
       url: "https://customs.gov.ph/",
     },
     {
-      logo: require("../../../assets/government/dofLogo.png"),
+      logo: require("../../../src/assets/government/dofLogo.png"),
       name: "DEPARTMENT OF FINANCE",
       url: "https://www.dof.gov.ph/services/customs-modernization-and-tariff-act/",
     },
     {
-      logo: require("../../../assets/government/dtiLogo.png"),
+      logo: require("../../../src/assets/government/dtiLogo.png"),
       name: "DEPARTMENT OF TRADE & INDUSTRY",
       url: "https://www.dti.gov.ph/",
     },
     {
-      logo: require("../../../assets/government/pccbiLogo.png"),
+      logo: require("../../../src/assets/government/pccbiLogo.png"),
       name: "PHILIPPINE CHAMBER OF CUSTOMS BROKERS INC",
       url: "https://pccbi.com.ph/ccbi-cogs/",
     },
     {
-      logo: require("../../../assets/government/pezaLogo.png"),
+      logo: require("../../../src/assets/government/pezaLogo.png"),
       name: "PHILIPPINE ECONOMIC ZONE AUTHORITY",
       url: "https://www.peza.gov.ph/peza-online",
     },
     {
-      logo: require("../../../assets/government/ppaLogo.png"),
+      logo: require("../../../src/assets/government/ppaLogo.png"),
       name: "PHILIPPINE PORTS AUTHORITY",
       url: "https://www.ppa.com.ph/",
     },
     {
-      logo: require("../../../assets/government/prcLogo.png"),
+      logo: require("../../../src/assets/government/prcLogo.png"),
       name: "PROFESSIONAL REGULATION COMISION ",
       url: "https://online.prc.gov.ph/",
     },
@@ -60,13 +60,13 @@ export default function Index() {
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
-        source={require("../../../assets/banners/small.png")}
+        source={require("../../../src/assets/banners/small.png")}
         style={{
           aspectRatio: 3,
           paddingVertical: 30,
           paddingHorizontal: 40,
         }}
-        imageStyle={{ resizeMode: "cover" }}
+        resizeMode= "cover" 
       >
         <Text
           style={{

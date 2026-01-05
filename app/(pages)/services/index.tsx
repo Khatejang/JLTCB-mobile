@@ -1,4 +1,4 @@
-import { Text, ImageBackground, View, StyleSheet,  } from "react-native";
+import { Text, ImageBackground, View, StyleSheet } from "react-native";
 import { ProgressBar } from "react-native-paper";
 import ColumnServices from "./ColumnServices";
 import RowServices from "./RowServices";
@@ -7,13 +7,13 @@ export default function Index() {
   return (
     <>
       <ImageBackground
-        source={require("../../../assets/banners/small.png")}
+        source={require("../../../src/assets/banners/small.png")}
         style={{
           aspectRatio: 3,
           paddingVertical: 30,
           paddingHorizontal: 40,
         }}
-        imageStyle={{ resizeMode: "cover" }}
+        resizeMode="cover"
       >
         <Text style={{ color: "#EE9034", fontSize: 20, fontWeight: 500 }}>
           SERVICES
@@ -48,11 +48,10 @@ const styles = StyleSheet.create({
     height: 3,
     borderRadius: 10,
     backgroundColor: "#9D9D9D",
-    marginBottom:10,
-    marginTop:2
+    marginBottom: 10,
+    marginTop: 2,
   },
-  textTop:{
-    marginTop:5
+  textTop: {
+    marginTop: 5,
   },
-  
 });

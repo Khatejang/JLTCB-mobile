@@ -7,8 +7,8 @@ import NavigationBar from "./NavigationBar";
 export default function RootLayout() {
   const pathname = usePathname();
 
-  const hideHeader = pathname === "/" || pathname === "/landing";
-  const hideNavigationBar = pathname === "/" || pathname === "/landing";
+  const hideHeader = pathname === "/" || pathname === "/landing-page";
+  const hideNavigationBar = pathname === "/" || pathname === "/landing-page";
   return (
     <>
       <SafeAreaView

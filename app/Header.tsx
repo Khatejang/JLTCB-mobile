@@ -7,13 +7,13 @@ export default function Header() {
     <>
       <View style={styles.container}>
         <Image
-          source={require("../assets/white_logos/fullLogo.png")}
+          source={require("../src/assets/white_logos/fullLogo.png")}
           style={styles.logo}
           resizeMode="contain"
         />
         <TouchableOpacity style={styles.profileContainer}>
           <Image
-            source={require("../assets/images/profile.png")}
+            source={require("../src/assets/images/profile.png")}
             style={styles.profileImage}
             resizeMode="contain"
           />

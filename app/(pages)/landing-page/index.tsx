@@ -13,19 +13,19 @@ export default function Index() {
   return (
     <>
       <ImageBackground
-        source={require("../assets/landingPage.png")}
+        source={require("../../../src/assets/landingPage.png")}
         style={styles.image}
         resizeMode="cover"
       >
         <View style={styles.whiteOverlay} />
         <View style={styles.logoContainer}>
           <Image
-            source={require("../assets/black_logos/logo.png")}
+            source={require("../../../src/assets/black_logos/logo.png")}
             style={styles.logoImage}
             resizeMode="contain"
           />
           <Image
-            source={require("../assets/black_logos/word.png")}
+            source={require("../../../src/assets/black_logos/word.png")}
             style={styles.wordImage}
             resizeMode="cover"
           />

@@ -1,7 +1,6 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { Card } from "react-native-paper";
-import styles from "../styles";
 
 export default function NewsCardTemplate() {
   const today = new Date();
@@ -16,7 +15,7 @@ export default function NewsCardTemplate() {
       <View style={{ flexDirection: "row", justifyContent: "center" }}>
         {/* LEFT IMAGE */}
         <Image
-          source={require("../../../../assets/images/testImage.png")}
+          source={require("../../../../src/assets/images/testImage.png")}
           style={{
             width: 90,
             height: 90,
@@ -51,3 +50,22 @@ export default function NewsCardTemplate() {
     </Card>
   );
 }
+const styles = StyleSheet.create({
+
+  cardContainer: {
+    marginTop: 5,
+    height: 90,
+    justifyContent: "center",
+    elevation: 0,
+    borderWidth: 0,
+    backgroundColor: "#ffffff",
+  },
+  title_1: {
+    backgroundColor: "gray",
+    fontSize: 9,
+    paddingHorizontal: 5,
+    color: "white",
+  },
+  title_2: { fontSize: 9, fontWeight: 700 },
+  description: { fontSize: 8 },
+});

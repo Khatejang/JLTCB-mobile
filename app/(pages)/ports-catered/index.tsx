@@ -5,13 +5,13 @@ export default function Index() {
   return (
     <>
       <ImageBackground
-        source={require("../../../assets/banners/small.png")}
+        source={require("../../../src/assets/banners/small.png")}
         style={{
           aspectRatio: 3,
           paddingVertical: 30,
           paddingHorizontal: 40,
         }}
-        imageStyle={{ resizeMode: "cover" }}
+        resizeMode="cover"
       >
         <Text
           style={{
@@ -24,11 +24,11 @@ export default function Index() {
         </Text>
       </ImageBackground>
       <Image
-        source={require("../../assets/ports_catered/map.png")}
+        source={require("../../../src/assets/ports_catered/map.png")}
         resizeMode="cover"
-        style={{ height: "70%", width:"100%", marginTop: -30 }}
+        style={{ height: "70%", width: "100%", marginTop: -30 }}
       />
-      <Ports/>
+      <Ports />
     </>
   );
 }
