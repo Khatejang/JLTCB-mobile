@@ -8,7 +8,7 @@ type ImageInputBoxProps = {
   setFormData: Dispatch<SetStateAction<ContactFormData>>;
 };
 
-export default function ImageInputBox({ setFormData }: ImageInputBoxProps) {
+export default function SubForm_ImageInput({ setFormData }: ImageInputBoxProps) {
   const [image, setImage] = useState<string | null>(null);
 
   const pickImage = async () => {

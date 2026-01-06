@@ -2,7 +2,7 @@ import 'react-native-reanimated'
 import { Stack, usePathname } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "./Header";
-import NavigationBar from "./NavigationBar";
+import GuestNavBar from "./GuestNavBar";
 
 export default function RootLayout() {
   const pathname = usePathname();
@@ -26,7 +26,7 @@ export default function RootLayout() {
             animation: "fade"
           }}
         />
-        {!hideNavigationBar && <NavigationBar />}
+        {!hideNavigationBar && <GuestNavBar />}
       </SafeAreaView>
     </>
   );

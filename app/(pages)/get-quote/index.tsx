@@ -1,4 +1,4 @@
-import Form from "../get-quote/GetQuoteForm";
+import Form from "./Form";
 import { Text, ImageBackground, View,  } from "react-native";
 
 export default function Index() {
@@ -30,6 +30,7 @@ export default function Index() {
             margin: 5,
             paddingHorizontal: 5,
             height: 70,
+            justifyContent: "center"
           }}
         >
           <Text style={{ fontSize: 12,  color: "white" }}>
@@ -41,8 +42,7 @@ export default function Index() {
           </Text>
         </View>
       </ImageBackground>
-      {/* content */}
-      <Form></Form>
+      <Form/>
     </>
   );
 }

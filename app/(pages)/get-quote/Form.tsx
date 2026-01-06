@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, Surface, Text, TextInput } from "react-native-paper";
-import { ContactFormData, Field, } from "../../../src/types/get-quote";
-import ImageInputBox from "./ImageInputBox";
+import { Surface, Text, TextInput } from "react-native-paper";
+import { ContactFormData, Field } from "../../../src/types/get-quote";
+import SubForm_ImageInput from "./SubForm_ImageInput";
+import SubForm_CheckBox from "./SubForm_CheckBox";
 
-export default function GetQouteForm() {
+export default function Form() {
   const fields: Field[] = [
     { label: "Full Name", key: "fullName" },
     { label: "Email", key: "email" },
@@ -16,7 +17,7 @@ export default function GetQouteForm() {
     <View style={styles.container}>
       {/* Personal Data */}
       {fields.map((field, i) => (
-        <View key={i} style={{marginVertical:5}}>
+        <View key={i} style={{ marginVertical: 5 }}>
           <Text variant="titleSmall">{field.label}</Text>
           <Surface style={{ elevation: 10, borderRadius: 10 }}>
             <TextInput
@@ -46,7 +47,10 @@ export default function GetQouteForm() {
           (Commercial Invoice, Packing List, Airway Bill / Bill of Lading)
         </Text>
       </Text>
-      <ImageInputBox setFormData={setFormData} />
+
+      {/* Image Input Area */}
+      <SubForm_ImageInput setFormData={setFormData} />
+
       {/* Message area */}
       <Text variant="titleSmall">Message</Text>
       <Surface style={{ elevation: 10, borderRadius: 10 }}>
@@ -69,18 +73,9 @@ export default function GetQouteForm() {
           }}
         />
       </Surface>
-      
-      <Button
-        mode="contained"
-        style={{
-          backgroundColor: "#161F3C", // button color
-          borderRadius: 10, // round corners
-          marginBottom: 30,
-        }}
-        
-      >
-        SUBMIT
-      </Button>
+
+      {/* Check Box and Submit Button */}
+      <SubForm_CheckBox/>
     </View>
   );
 }
@@ -89,7 +84,7 @@ const styles = StyleSheet.create({
     marginTop: -30,
     marginHorizontal: 25,
     justifyContent: "center",
-    gap: 5
+    gap: 5,
   },
   texArea: {
     borderColor: "#ccc",

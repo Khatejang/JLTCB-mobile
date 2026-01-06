@@ -28,6 +28,7 @@ export default function GetAppointment() {
             margin: 5,
             paddingHorizontal: 5,
             height: 55,
+            justifyContent: "center"
           }}
         >
           <Text style={{ fontSize: 12,  color: "white" }}>
