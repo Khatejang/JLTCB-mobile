@@ -1,6 +1,7 @@
-import { Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import { Image, ImageBackground, TouchableOpacity, View } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
+import { Text } from "react-native-paper";
 import styles from "./styles";
 
 import { useRouter } from "expo-router";
@@ -17,8 +18,11 @@ export default function Index() {
         style={styles.image}
         resizeMode="cover"
       >
+        <SocialLogos />
+
         <View style={styles.whiteOverlay} />
-        <View style={styles.logoContainer}>
+
+        <View style={styles.buttonContainer}>
           <Image
             source={require("../../../src/assets/black_logos/logo.png")}
             style={styles.logoImage}
@@ -29,51 +33,30 @@ export default function Index() {
             style={styles.wordImage}
             resizeMode="cover"
           />
-          <View style={styles.buttonContainer}>
-            <LinearGradient
-              colors={["#EE9034", "#FFFFFF"]} // BORDER gradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              style={styles.outerGradient}
-            >
-              <TouchableOpacity>
-                <LinearGradient
-                  colors={["#161F3C", "#000000"]} // BUTTON gradient fill
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  style={styles.innerGradient}
-                >
-                  <Ionicons name="people" size={22} color="#EE9034" />
-                  <Text style={styles.buttonText} >Sign In</Text>
-                </LinearGradient>
-              </TouchableOpacity>
-            </LinearGradient>
-            <LinearGradient
-              colors={["#EE9034", "#FFFFFF"]} // BORDER gradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              style={styles.outerGradient}
-            >
-              <TouchableOpacity
-                onPress={() => 
-                  router.push("/home")
-                }
-              >
-                <LinearGradient
-                  colors={["#161F3C", "#000000"]} // BUTTON gradient fill
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  style={styles.innerGradient}
-                >
-                  <Ionicons name="person" size={22} color="#EE9034"/>
-                  <Text style={styles.buttonText}>Guest</Text>
-                </LinearGradient>
-              </TouchableOpacity>
-            </LinearGradient>
-          </View>
         </View>
-        <View>
-          <SocialLogos/>
+        <View
+          style={{ justifyContent: "flex-end", alignItems: "center", gap: 10 }}
+        >
+          <TouchableOpacity onPress={() => router.push("/home")}>
+            <LinearGradient
+              colors={["#161F3C", "#000000"]} // BUTTON gradient fill
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.innerGradient}
+            >
+              <Ionicons name="person" size={22} color="#EE9034" />
+              <Text style={styles.buttonText}>Guest</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+          <Text variant="titleMedium">
+            Already have an account?{" "}
+            <Text
+              onPress={() => router.push("/sign-in")}
+              style={{ fontWeight: "bold" }}
+            >
+              Sign In
+            </Text>
+          </Text>
         </View>
       </ImageBackground>
     </>

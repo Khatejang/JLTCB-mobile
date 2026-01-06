@@ -6,7 +6,6 @@ export default StyleSheet.create({
   //logo image
   logoContainer: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
     gap: 5,
   },
@@ -16,13 +15,14 @@ export default StyleSheet.create({
   },
   innerGradient: {
     width: 250,
-    borderRadius: 50,
+    borderRadius: 10,
     paddingVertical: 12,
     paddingHorizontal: 10,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     gap: 5,
+    width: 350
   },
   logoImage: {
     width: 500,
@@ -36,8 +36,11 @@ export default StyleSheet.create({
   },
   image: {
     flex: 1,
-    alignSelf: "center",
     width: "100%",
+    justifyContent:"space-between",
+    paddingTop: 20,
+    paddingBottom: 100
+
   },
   whiteOverlay: {
     ...StyleSheet.absoluteFillObject, // fill entire ImageBackground
@@ -46,8 +49,9 @@ export default StyleSheet.create({
 
   //button
   buttonContainer: {
-    marginVertical: 20,
-    gap: 5,
+    alignItems: "center",
+    justifyContent:"center",
+    flexDirection: "column"
   }, 
   buttonText: {
     color: "#EE9034",
