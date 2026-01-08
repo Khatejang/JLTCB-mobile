@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FlatList, View, Text } from "react-native";
 import { Button, Card } from "react-native-paper";
 import { Ionicons } from "@expo/vector-icons";
-import ports, { PortItem, PortData, Region } from "./ports";
+import ports, { PortItem, PortData, Region } from "./portsPlace";
 
 
 export default function Ports() {

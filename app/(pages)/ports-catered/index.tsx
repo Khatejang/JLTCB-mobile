@@ -5,8 +5,8 @@ import {
   FlatList,
   Dimensions,
 } from "react-native";
-import Ports from "@/app/(pages)/ports-catered/Ports";
-import ports from "./ports";
+import Ports from "./Ports"
+import ports from "./portsPlace";
 
 export default function Index() {
   const screenWidth = Dimensions.get("window").width;
