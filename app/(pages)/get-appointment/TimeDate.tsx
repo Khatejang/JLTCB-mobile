@@ -26,8 +26,6 @@ export default function TImeDate() {
       style={{
         padding: 10,
         marginTop: -25,
-        borderWidth: 2,
-        borderColor: "red",
         flexDirection: "row",
         width: screenWidth,
         gap: 5
