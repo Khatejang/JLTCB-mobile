@@ -1,7 +1,7 @@
-import GovermentLogos from "./GovernmentLogos"
-import NewsUpdates from "./NewsUpdates"
-import VideoReels from "./VideoContainer"
 import { View } from "react-native"
+import GovermentLogos from "./GovernmentLogos"
+import NewsUpdates from "./news-updates/NewsUpdatesContainer"
+import VideoReels from "./Reels/ReelsContainer"
 
 export default function Index(){
     return(

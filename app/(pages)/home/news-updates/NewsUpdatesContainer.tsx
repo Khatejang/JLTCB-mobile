@@ -1,8 +1,8 @@
 import { ScrollView, Text, View, StyleSheet, FlatList } from "react-native";
-import NewsCardTemplate from "./news-updates/NewsCardTemplate";
-import NewsTabButtons from "./news-updates/NewsTabButtons";
+import NewsCardTemplate from "./NewsCardTemplate";
+import NewsTabButtons from "./NewsTabButtons";
 
-export default function NewsUpdates() {
+export default function NewsUpdatesContainer() {
   const data = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
   ];
