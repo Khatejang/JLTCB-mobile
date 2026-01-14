@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { Dimensions, FlatList, Image, StyleSheet, View } from "react-native";
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import ReelsPlayer from "./ReelsPlayer";
-
+import { useRouter } from "expo-router";
 
 const data = [
   {
@@ -14,7 +21,6 @@ const data = [
     type: "video",
     source: require("../../../../src/assets/reels/vid_2.mp4"),
   },
-
   {
     id: "i1",
     type: "image",
@@ -49,9 +55,8 @@ const data = [
 
 export default function ReelsConatainer() {
   const screenWidth = Dimensions.get("window").width;
-  const screenHeight = Dimensions.get("window").height;
 
-  const [activeVideo, setActiveVideo] = useState<number | null>(null);
+  const router = useRouter();
 
   return (
     <View style={styles.videoContainer}>
@@ -63,13 +68,18 @@ export default function ReelsConatainer() {
         renderItem={({ item }) => {
           if (item.type === "video") {
             return (
-              <ReelsPlayer
-                video={item.source}
-                // onPress={() => setActiveVideo(item.source)}
-              />
+              <TouchableOpacity
+                onPress={() =>
+                  router.push({
+                    pathname: "/(pages)/home/Reels/ReelsFullScreen",
+                    params: {id: item.id },
+                  })
+                }
+              >
+                <ReelsPlayer video={item.source} />
+              </TouchableOpacity>
             );
           }
-
           return (
             <Image
               source={item.source}

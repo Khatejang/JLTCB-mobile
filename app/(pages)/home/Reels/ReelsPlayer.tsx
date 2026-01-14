@@ -1,37 +1,37 @@
 import { useVideoPlayer, VideoView } from "expo-video";
 import { StyleSheet, Dimensions, Pressable } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "expo-router";
 
 type Props = {
   video: number;
 };
 
-export default function VideoPlayer({ video }: Props) {
+export default function ReelsPlayer({ video }: Props) {
   const router = useRouter();
 
-  const player = useVideoPlayer(video, (player) => {
-    player.muted = true;
+  const player = useVideoPlayer(video);
+  useEffect(() => {
+    player.muted = true; //this muted prop is not working i dont know why
+    player.volume = 0;
     player.play();
-  });
-  const [expanded, setExpanded] = useState<boolean>(false);
+  })
 
   const screenWidth = Dimensions.get("window").width;
-  const screenHeight = Dimensions.get("window").height;
 
-  const videoWidth = !expanded ? screenWidth * 0.2 : screenWidth;
-  const videoHeight = !expanded ? screenWidth * 0.3 : "70%" ;
+  
 
   return (
     <>
-      <Pressable onPress={() => { router.push("/home/Reels/ReesFullScreen")}}>
-        <VideoView
-          player={player}
-          style={[styles.videoSize, { width: videoWidth, height: videoHeight }]}
-          contentFit="cover"
-          nativeControls={expanded}
-        />
-      </Pressable>
+      <VideoView
+        player={player}
+        style={[
+          styles.videoSize,
+          { width: screenWidth * 0.2, height: screenWidth * 0.3 },
+        ]}
+        contentFit="cover"
+        nativeControls={false} 
+      />
     </>
   );
 }
