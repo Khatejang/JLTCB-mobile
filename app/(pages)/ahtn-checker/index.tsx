@@ -1,89 +1,106 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  TextInput,
-} from "react-native";
-import { Button } from "react-native-paper";
+import TARIFF_SCHEDULES from "@/src/constants/tariffSchedules";
+import { useState } from "react";
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, Checkbox } from "react-native-paper";
 
 export default function AHTNChecker() {
-  const [checked, setChecked] = useState(false);
+  const [selectedTariffSchedules, setSelectedTariffSchedules] = useState<
+    string[]
+  >([]);
 
-  const data = [
-    "SELECT ALL:",
-    "AANZFTA - ASEAN-Australia-New Zealand Free Trade Agreement",
-    "ACFTA - ASEAN-China Free Trade Agreement",
-    "AHKFTA - ASEAN-Hong Kong, China Free Trade Agreement",
-    "AIFTA - ASEAN-India Free Trade Agreement",
-    "AJCEPA - ASEAN-Japan Comprehensive Economic Partnership Agreement",
-    "AAKFTA - ASEAN-Korea Free Trade Agreement",
-    "ATIGA - ASEAN Trade in Goods Agreement",
-    "MFN - Most Favoured Nation",
-    "PH-EFTA FTA (CHE/LIE) - Philippines-European Free Trade Association Free Trade Agreement FTA (Switzerland/Liechtenstein)",
-    "PH-EFTA FTA (ISL) - Philippines-European Free Trade Association Free Trade Agreement (Iceland)",
-    "H-EFTA FTA (NOR) - Philippines-European Free Trade Association Free Trade Agreement (Norway)",
-    "PH-KR FTA - Philippines-Korea Free Trade Agreement",
-    "Philippines-Japan Economic Partnership Agreement",
-    "RCEP - Regional Comprehensive Economic Partnership Agreement",
-  ];
+  const allValues = TARIFF_SCHEDULES.map((c) => c.value);
+  const isAllSelected = selectedTariffSchedules.length === allValues.length;
+  const isIndeterminate =
+    selectedTariffSchedules.length > 0 &&
+    selectedTariffSchedules.length < allValues.length;
+
+  function handleSelectAll() {
+    setSelectedTariffSchedules(isAllSelected ? [] : allValues);
+  }
+
+  function handleCheckboxValueChange(value: string) {
+    setSelectedTariffSchedules((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value],
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={{ gap: 10 }}>
         <TextInput
           style={styles.input}
           placeholderTextColor="#888"
           textAlign="center"
-          textAlignVertical="center"
           placeholder="ENTER AHTN 2022 CODE or KEYWORD(S):"
         />
 
-        <Text
-          style={{
-            fontWeight: "bold",
-            textAlign: "center",
-            marginVertical: 10,
-          }}
-        >
-          SELECT TARIFF SCHEDULE(S):
-        </Text>
-        {data.map((data, i) => (
-          <View style={{ flexDirection: "row", marginBottom: 10 }} key={i}>
-            <TouchableOpacity
-              style={[styles.checkbox, checked && styles.checked]}
-              onPress={() => setChecked(!checked)}
+        <Text style={styles.title}>SELECT TARIFF SCHEDULE(S):</Text>
+
+        <View>
+          <Checkbox.Item
+            color="#161F3C"
+            style={styles.checkbox}
+            labelStyle={{ textAlign: "left" }}
+            labelVariant="labelLarge"
+            label="SELECT ALL: "
+            status={
+              isAllSelected
+                ? "checked"
+                : isIndeterminate
+                  ? "indeterminate"
+                  : "unchecked"
+            }
+            onPress={handleSelectAll}
+            position="leading"
+          />
+          {TARIFF_SCHEDULES.map((t) => (
+            <Checkbox.Item
+              color="#161F3C"
+              style={styles.checkbox}
+              labelStyle={{ textAlign: "left" }}
+              labelVariant="labelLarge"
+              key={t.value}
+              label={`${t.value} - ${t.label}`}
+              status={
+                selectedTariffSchedules.includes(t.value)
+                  ? "checked"
+                  : "unchecked"
+              }
+              onPress={() => handleCheckboxValueChange(t.value)}
+              position="leading"
             />
-            <Text style={styles.label}>{data}</Text>
-          </View>
-        ))}
+          ))}
+        </View>
       </View>
+
       <Button
         mode="contained"
-        style={{
-          backgroundColor: "#161F3C", // button color
-          borderRadius: 10, // round corners
-          marginBottom: 30
+        labelStyle={{
+          fontSize: 16,
         }}
+        style={styles.button}
       >
         SEARCH
       </Button>
-    </View>
+    </ScrollView>
   );
 }
+
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "column",
-    margin: 20,
-    height: "100%",
-    justifyContent: "space-between"
+  container: { paddingInline: 40, paddingBlock: 20, gap: 20 },
+  title: {
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBlockStart: 10,
+  },
+  button: {
+    backgroundColor: "#161F3C", // button color
+    borderRadius: 10, // round corners
+    paddingBlock: 4,
   },
   checkbox: {
-    width: 20,
-    height: 20,
-    borderWidth: 2,
-    borderColor: "#000",
-    marginRight: 10,
+    paddingInlineStart: 0,
+    gap: 10,
   },
   checked: {
     backgroundColor: "#EE9034",
