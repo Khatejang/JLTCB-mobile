@@ -1,10 +1,5 @@
-import { TextInput } from "react-native-paper"
+import Login from "@/components/login";
 
-export default function Index(){
-    return(
-        <>
-        <TextInput label={"Email"}></TextInput>
-        <TextInput label={"Password"}></TextInput>
-        </>
-    )
+export default function Index() {
+  return <Login />;
 }

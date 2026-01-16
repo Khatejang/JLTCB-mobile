@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Text } from "react-native-paper";
 import styles from "./styles";
 
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 import { Ionicons } from "@expo/vector-icons";
 import SocialLogos from "./SocialLogos";
@@ -34,7 +34,12 @@ export default function Index() {
           />
         </View>
         <View
-          style={{ justifyContent: "flex-end", alignItems: "center", gap: 10, marginBottom: 20}}
+          style={{
+            justifyContent: "flex-end",
+            alignItems: "center",
+            gap: 10,
+            marginBottom: 20,
+          }}
         >
           <TouchableOpacity onPress={() => router.push("/home")}>
             <LinearGradient
@@ -49,12 +54,9 @@ export default function Index() {
           </TouchableOpacity>
           <Text variant="titleMedium">
             Already have an account?{" "}
-            <Text
-              onPress={() => router.push("/(pages)/sign-in")}
-              style={{ fontWeight: "bold" }}
-            >
+            <Link href="/sign-in" style={{ fontWeight: "bold" }}>
               Sign In
-            </Text>
+            </Link>
           </Text>
         </View>
       </ImageBackground>
