@@ -1,14 +1,21 @@
-import 'react-native-reanimated'
 import { Stack, usePathname } from "expo-router";
+import "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "./Header";
 import GuestNavBar from "./GuestNavBar";
+import Header from "./Header";
+
+const hidePaths = {
+  header: ["/landing-page", "/customs-brokerage"],
+  navigationBar: ["/landing-page", "/customs-brokerage"],
+};
 
 export default function RootLayout() {
   const pathname = usePathname();
 
-  const hideHeader = pathname === "/" || pathname === "/landing-page";
-  const hideNavigationBar = pathname === "/" || pathname === "/landing-page";
+  const hideHeader = pathname === "/" || hidePaths.header.includes(pathname);
+  const hideNavigationBar =
+    pathname === "/" || hidePaths.navigationBar.includes(pathname);
+
   return (
     <>
       <SafeAreaView
@@ -16,14 +23,13 @@ export default function RootLayout() {
         style={{
           flex: 1,
           backgroundColor: "#b1b1b3ff",
-         
         }}
       >
         {!hideHeader && <Header />}
         <Stack
           screenOptions={{
             headerShown: false,
-            animation: "fade"
+            animation: "fade",
           }}
         />
         {!hideNavigationBar && <GuestNavBar />}
