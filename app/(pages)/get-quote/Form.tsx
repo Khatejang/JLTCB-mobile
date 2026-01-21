@@ -41,7 +41,6 @@ export default function Form() {
               onChangeText={(text) =>
                 setFormData((prev) => ({ ...prev, [field.key]: text }))
               }
-              allowFontScaling={false}
             />
           </Surface>
         </View>
@@ -79,7 +78,6 @@ export default function Form() {
           theme={{
             roundness: 10,
           }}
-          allowFontScaling={false}
         />
       </Surface>
 
@@ -92,7 +90,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: -30,
     marginHorizontal: 25,
-    justifyContent: "center",
     gap: 5,
   },
   texArea: {

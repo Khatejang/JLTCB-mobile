@@ -60,7 +60,7 @@ export default function SubForm_CheckBox({setFormData} : Props) {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center"
+    justifyContent: "center"
   },
   styledText: {
     textDecorationLine: "underline",

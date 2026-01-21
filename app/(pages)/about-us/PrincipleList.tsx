@@ -25,7 +25,7 @@ export default function PrincipleList() {
       {datas.map((data, i) => (
         <View key={i}>
           <Text style={{fontWeight:"bold", fontSize: 20, color: "#161F3C" }} allowFontScaling={false}>{data.title}</Text>
-          <Text style={{fontSize: 15, color: "#161F3C" }}>{data.description} allowFontScaling={false}</Text>
+          <Text style={{fontSize: 15, color: "#161F3C" }} allowFontScaling={false}>{data.description} </Text>
           <Divider style={{marginVertical:10}}/>
         </View>
       ))}

@@ -1,9 +1,9 @@
 import Form from "./Form";
-import { Text, ImageBackground, View } from "react-native";
+import { Text, ImageBackground, View, ScrollView } from "react-native";
 
 export default function Index() {
   return (
-    <>
+    <ScrollView >
       {/* banner */}
       <ImageBackground
         source={require("../../../src/assets/banners/large.png")}
@@ -47,6 +47,6 @@ export default function Index() {
         </View>
       </ImageBackground>
       <Form />
-    </>
+    </ScrollView>
   );
 }

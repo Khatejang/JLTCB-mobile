@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-import { FlatList, Text, View } from "react-native";
-import { Button, Card } from "react-native-paper";
+import { FlatList, View } from "react-native";
+import { Button, Card, Text } from "react-native-paper";
 import ports, { PortData, PortItem, Region } from "./portsPlace";
 
 export default function Ports() {
@@ -48,7 +48,6 @@ export default function Ports() {
                 borderColor: isActive ? "#EE9034" : "#888888ff",
                 backgroundColor: isActive ? "#EE9034" : "#ffffff",
                 borderRadius: 2,
-                height: 40,
                 marginRight: 10,
               }}
               labelStyle={{
@@ -56,7 +55,7 @@ export default function Ports() {
               }}
               onPress={() => setActiveRegion(item.region as Region)}
             >
-              {item.region}
+              <Text allowFontScaling={false} style={{fontSize:10}}>{item.region}</Text>
             </Button>
           );
         }}
