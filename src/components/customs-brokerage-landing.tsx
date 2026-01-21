@@ -55,7 +55,7 @@ export default function CustomsBrokerageLanding() {
 
       <ImageBackground
         style={styles.bottomBanner}
-        source={require("../assets/banners/small.png")}
+        source={require("../assets/banners/large.png")}
         contentFit="fill"
       >
         <SocialLogos />
@@ -212,7 +212,8 @@ const styles = StyleSheet.create({
   },
 
   bottomBanner: {
-    height: 145,
+    paddingTop: 25,
+    aspectRatio: 2.5,
     transform: [{ rotate: "180deg" }],
   },
 });

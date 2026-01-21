@@ -54,7 +54,7 @@ export default function LandingPage() {
 
       <ImageBackground
         style={styles.bottomBanner}
-        source={require("../assets/banners/small.png")}
+        source={require("../assets/banners/large.png")}
         contentFit="fill"
       >
         <Image
@@ -72,19 +72,19 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 20,
     backgroundColor: "white",
-    justifyContent: "space-between",
   },
   main: {
-    justifyContent: "center",
+    justifyContent: "flex-end",
     flex: 1,
     gap: 30,
     paddingHorizontal: 20,
   },
   logoContainer: {
     gap: 20,
+    height: "50%",
   },
   logo: {
-    height: 300,
+    flex: 1,
     marginLeft: "8%",
   },
   image: {
@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
       ios: "MartelSans-Black",
     }),
     textAlign: "center",
-    fontSize: 40,
-    lineHeight: 56,
+    fontSize: 36,
+    lineHeight: 48,
   },
   solutions: {
     flexDirection: "row",
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   bottomBanner: {
-    height: 145,
+    aspectRatio: 2.5,
     transform: [{ rotate: "180deg" }],
   },
   skyline: {
