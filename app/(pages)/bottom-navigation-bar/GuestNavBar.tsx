@@ -3,9 +3,11 @@ import { useRouter } from "expo-router";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function NavigationBar() {
   const router = useRouter();
+  const insets = useSafeAreaInsets()
   const [leftMenuVisible, setLeftMenuVisible] = useState(false);
   const [rightMenuVisible, setRightMenuVisible] = useState(false);
 
@@ -22,7 +24,7 @@ export default function NavigationBar() {
   return (
     <>
       {/* Navigation Bar */}
-      <View style={styles.navContainer}>
+      <View style={[styles.navContainer, {height: 40 + insets.bottom, paddingBottom: insets.bottom}]}>
         <TouchableOpacity
           onPress={() => {
             toggleMenu("left");
@@ -172,15 +174,14 @@ export default function NavigationBar() {
 const styles = StyleSheet.create({
   navContainer: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
     justifyContent: "space-evenly",
     backgroundColor: "#ffffffff",
-    height: 60,
   },
     borderContainer: {
     position: "absolute",
     alignContent: "flex-end",
-    bottom: 60, // adjust according to nav bar
+    bottom: 70,
     width: "100%",
     justifyContent: "space-between"
   },
