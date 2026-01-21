@@ -17,7 +17,7 @@ export default function RootLayout() {
   const hideNavigationBar =
     pathname === "/" || hidePaths.navigationBar.includes(pathname);
 
-  const user = "LeadAS";
+  const user = "Guest";
   return (
     <>
       <SafeAreaView
