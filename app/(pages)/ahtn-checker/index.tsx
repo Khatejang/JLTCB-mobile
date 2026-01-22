@@ -1,6 +1,13 @@
 import TARIFF_SCHEDULES from "@/src/constants/tariff_schedules";
 import { useState } from "react";
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { Button, Checkbox } from "react-native-paper";
 
 export default function AHTNChecker() {
@@ -34,41 +41,40 @@ export default function AHTNChecker() {
           placeholder="ENTER AHTN 2022 CODE or KEYWORD(S):"
         />
 
-        <Text style={styles.title} allowFontScaling={false}>SELECT TARIFF SCHEDULE(S):</Text>
+        <Text style={styles.title} allowFontScaling={false}>
+          SELECT TARIFF SCHEDULE(S):
+        </Text>
 
-        <View>
-          <Checkbox.Item
-            color="#161F3C"
-            style={styles.checkbox}
-            labelStyle={{ textAlign: "left" }}
-            labelVariant="labelLarge"
-            label="SELECT ALL: "
-            status={
-              isAllSelected
-                ? "checked"
-                : isIndeterminate
-                  ? "indeterminate"
-                  : "unchecked"
-            }
-            onPress={handleSelectAll}
-            position="leading"
-          />
-          {TARIFF_SCHEDULES.map((t) => (
-            <Checkbox.Item
+        <View style={styles.checkboxList}>
+          <Pressable onPress={handleSelectAll} style={styles.checkboxWrapper}>
+            <Checkbox.Android
               color="#161F3C"
-              style={styles.checkbox}
-              labelStyle={{ textAlign: "left" }}
-              labelVariant="labelLarge"
-              key={t.value}
-              label={`${t.value} - ${t.label}`}
               status={
-                selectedTariffSchedules.includes(t.value)
+                isAllSelected
                   ? "checked"
-                  : "unchecked"
+                  : isIndeterminate
+                    ? "indeterminate"
+                    : "unchecked"
               }
-              onPress={() => handleCheckboxValueChange(t.value)}
-              position="leading"
             />
+            <Text style={styles.checkboxLabel}>Select All: </Text>
+          </Pressable>
+          {TARIFF_SCHEDULES.map((t) => (
+            <Pressable
+              style={styles.checkboxWrapper}
+              onPress={() => handleCheckboxValueChange(t.value)}
+              key={t.value}
+            >
+              <Checkbox.Android
+                color="#161F3C"
+                status={
+                  selectedTariffSchedules.includes(t.value)
+                    ? "checked"
+                    : "unchecked"
+                }
+              />
+              <Text style={styles.checkboxLabel}>{t.label}</Text>
+            </Pressable>
           ))}
         </View>
       </View>
@@ -98,12 +104,22 @@ const styles = StyleSheet.create({
     borderRadius: 10, // round corners
     paddingBlock: 4,
   },
+  checkboxList: {
+    gap: 6
+  },
+  checkboxWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    paddingRight: 44 
+  },
   checkbox: {
     paddingInlineStart: 0,
     gap: 10,
   },
-  checked: {
-    backgroundColor: "#EE9034",
+  checkboxLabel: {
+    textTransform: "uppercase",
+    fontWeight: "500",
   },
   label: {
     fontSize: 12,
