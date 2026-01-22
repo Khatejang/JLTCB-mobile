@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { useNavigate } from "@/src/hooks/useNavigate";
 
 const NavIcons = [
   {
@@ -17,7 +17,7 @@ const NavIcons = [
 export default function LeadASNavBar() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const router = useRouter();
+  const {navigate} = useNavigate();
 
   return (
     <View style={styles.navContainer}>
@@ -26,7 +26,7 @@ export default function LeadASNavBar() {
           <TouchableOpacity
             onPress={() => (
               setActiveIndex(index),
-              router.push(icon.route as any)
+              navigate(icon.route as any)
             )}
           >
             <Ionicons

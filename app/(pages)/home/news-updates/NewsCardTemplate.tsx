@@ -1,5 +1,4 @@
 import { Image } from "expo-image";
-import { useRouter } from "expo-router";
 import {
   Dimensions,
   StyleSheet,
@@ -7,11 +6,13 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useNavigate } from "@/src/hooks/useNavigate";
 import { Card } from "react-native-paper";
 import { imageData } from "../../../../src/constants/home_NewsArticle";
+import { routes } from "@/src/constants/routes";
 
 export default function NewsCardTemplate() {
-  const router = useRouter();
+  const {navigate} = useNavigate();
 
   const today = new Date();
 
@@ -45,11 +46,7 @@ export default function NewsCardTemplate() {
           />
           <TouchableOpacity
             style={styles.overLay}
-            onPress={() => {
-              {
-                router.push("/(pages)/home/NewsArtice");
-              }
-            }}
+            onPress={() => navigate(routes.ARTICLE)}
           >
             <Text style={styles.textStyle} allowFontScaling={false}>
               READ MORE

@@ -1,0 +1,15 @@
+export const routes = {
+  HOME: "/(pages)/home",
+  GOVERNANCE: "/(pages)/governance",
+  ABOUT: "/(pages)/about-us",
+  CONTACT: "/(pages)/contact-us",
+  SERVICES: "/(pages)/services",
+  PORTS: "/(pages)/ports-catered",
+  QUOTE: "/(pages)/get-quote",
+  APPOINTMENT: "/(pages)/get-appointment",
+  AHTN: "/(pages)/ahtn-checker",
+  LANDING_PAGE2: "/(pages)/landing-page/customs-brokerage",
+  CAREERS: "/(pages)/careers",
+  ARTICLE: "/(pages)/home/NewsArtice",
+  SIGN_IN: "/(pages)/sign-in"
+};

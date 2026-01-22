@@ -1,15 +1,27 @@
 import { useState } from "react";
-import { useRouter } from "expo-router";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNavigate } from "../../../src/hooks/useNavigate";
+import { routes } from "../../../src/constants/routes";
+import MenuItem from "@/src/components/nav-bar/MenuItem";
+import { left_menu, right_menu } from "@/src/constants/menu_item";
 
 export default function NavigationBar() {
-  const router = useRouter();
-  const insets = useSafeAreaInsets()
+  const insets = useSafeAreaInsets();
+
   const [leftMenuVisible, setLeftMenuVisible] = useState(false);
   const [rightMenuVisible, setRightMenuVisible] = useState(false);
+
+  const closeBeforeNavigate = () => {
+    setLeftMenuVisible(false);
+    setRightMenuVisible(false);
+  };
+
+  const { navigate } = useNavigate({
+    beforeNavigate: closeBeforeNavigate,
+  });
 
   const toggleMenu = (position: string) => {
     if (position === "left") {
@@ -24,28 +36,23 @@ export default function NavigationBar() {
   return (
     <>
       {/* Navigation Bar */}
-      <View style={[styles.navContainer, {height: 40 + insets.bottom, paddingBottom: insets.bottom}]}>
-        <TouchableOpacity
-          onPress={() => {
-            toggleMenu("left");
-          }}
-        >
+      <View
+        style={[
+          styles.navContainer,
+          { height: 40 + insets.bottom, paddingBottom: insets.bottom },
+        ]}
+      >
+        <TouchableOpacity onPress={() => toggleMenu("left")}>
           <Ionicons name="newspaper" size={25} color="#898989" />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            router.push("/(pages)/home");
-            setLeftMenuVisible(false);
-            setRightMenuVisible(false);
-          }}
-        >
+        <TouchableOpacity onPress={() => navigate(routes.HOME)}>
           <Ionicons name="home" size={25} color="#EE9034" />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => toggleMenu("right")}>
           <Ionicons name="clipboard" size={25} color="#898989" />
         </TouchableOpacity>
       </View>
-          
+
       {/* Curve Left */}
       {leftMenuVisible && (
         <View style={styles.borderContainer}>
@@ -56,114 +63,52 @@ export default function NavigationBar() {
             style={styles.leftBorder}
           >
             <View
-              style={{
-                backgroundColor: "#ffffff",
-                height: 200,
-                borderTopRightRadius: 300,
-                justifyContent: "center",
-                gap: 10,
-                paddingLeft: 20,
-              }}
+              style={[
+                styles.menuContainer,
+                {
+                  borderTopRightRadius: 300,
+                  paddingLeft: 20,
+                },
+              ]}
             >
-              <TouchableOpacity
-                onPress={() => {
-                  router.push("/(pages)/governance");
-                  setLeftMenuVisible(false);
-                  setRightMenuVisible(false);
-                }}
-              >
-                <Text style={styles.text} allowFontScaling={false}>Governance</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  router.push("/(pages)/about-us");
-                  setLeftMenuVisible(false);
-                  setRightMenuVisible(false);
-                }}
-              >
-                <Text style={styles.text} allowFontScaling={false}>About Us</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  router.push("/(pages)/contact-us");
-                  setLeftMenuVisible(false);
-                  setRightMenuVisible(false);
-                }}
-              >
-                <Text style={styles.text} allowFontScaling={false}>Contact Us</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  router.push("/(pages)/services");
-                  setLeftMenuVisible(false);
-                  setRightMenuVisible(false);
-                }}
-              >
-                <Text style={styles.text} allowFontScaling={false}>Services</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  router.push("/(pages)/ports-catered");
-                  setLeftMenuVisible(false);
-                  setRightMenuVisible(false);
-                }}
-              >
-                <Text style={styles.text} allowFontScaling={false}>Ports Catered</Text>
-              </TouchableOpacity>
+              {left_menu.map((item) => (
+                <MenuItem
+                  key={item.route}
+                  label={item.label}
+                  onPress={() => navigate(item.route)}
+                />
+              ))}
             </View>
           </LinearGradient>
         </View>
       )}
+
       {/* Curve Right */}
       {rightMenuVisible && (
         <View style={styles.borderContainer}>
           <LinearGradient
             colors={["#1d2b5b", "#d5893c", "#ffffff"]}
             start={{ x: 1, y: 0 }}
-             end={{ x: 0, y: 1 }}
-             style={styles.rightBorder}
+            end={{ x: 0, y: 1 }}
+            style={styles.rightBorder}
           >
-            <View style={{
-                backgroundColor: "#ffffff",
-                height: 200,
-                borderTopLeftRadius: 300,
-                justifyContent: "center",
-                gap: 10,
-                paddingRight: 20,
-                alignItems: "flex-end"
-              }}>
-              <TouchableOpacity
-                onPress={() => {
-                  router.push("/(pages)/get-quote");
-                  setLeftMenuVisible(false);
-                  setRightMenuVisible(false);
-                }}
-              >
-                <Text style={styles.text} allowFontScaling={false}>Get Qoute</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  router.push("/(pages)/get-appointment");
-                  setLeftMenuVisible(false);
-                  setRightMenuVisible(false);
-                }}
-              >
-                <Text style={styles.text} allowFontScaling={false}>
-                  Get Appointment
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  router.push("/(pages)/ahtn-checker");
-                  setLeftMenuVisible(false);
-                  setRightMenuVisible(false);
-                }}
-              >
-                <Text style={styles.text} allowFontScaling={false}>AHTN Checker</Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.text} allowFontScaling={false}>Calculator</Text>
-              </TouchableOpacity>
+            <View
+              style={[
+                styles.menuContainer,
+                {
+                  borderTopLeftRadius: 300,
+                  paddingRight: 20,
+                  alignItems: "flex-end",
+                },
+              ]}
+            >
+              {right_menu.map((item) => (
+                <MenuItem
+                  key={item.route}
+                  label={item.label}
+                  onPress={() => navigate(item.route)}
+                />
+              ))}
             </View>
           </LinearGradient>
         </View>
@@ -178,12 +123,18 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     backgroundColor: "#ffffffff",
   },
-    borderContainer: {
+  borderContainer: {
     position: "absolute",
     alignContent: "flex-end",
     bottom: 70,
     width: "100%",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+  },
+  menuContainer: {
+    backgroundColor: "#ffffff",
+    height: 200,
+    justifyContent: "center",
+    gap: 10,
   },
   leftBorder: {
     height: 217,
@@ -191,7 +142,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 360,
     paddingTop: 16,
     paddingRight: 2,
-    paddingBottom:6,
+    paddingBottom: 6,
   },
   rightBorder: {
     height: 217,
@@ -199,16 +150,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 360,
     paddingTop: 16,
     paddingLeft: 2,
-    paddingBottom:6,
+    paddingBottom: 6,
     alignSelf: "flex-end",
   },
- text:{
-   fontSize: 20,
-    color: "#6D6D6D",
- },
- textPosition:{
-  bottom: 30,
-    paddingLeft: 20,
-    gap: 12,
- }
 });

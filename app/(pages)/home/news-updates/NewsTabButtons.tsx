@@ -1,4 +1,3 @@
-import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
   Dimensions,
@@ -7,9 +6,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
+import { useNavigate } from "@/src/hooks/useNavigate";
+import { routes } from "@/src/constants/routes";
 export default function NewsTabButtons() {
-  const router = useRouter();
+  const {navigate} = useNavigate();
 
   const [active, setActive] = useState(0);
 
@@ -26,7 +26,7 @@ export default function NewsTabButtons() {
           onPress={() => {
             setActive(i);
             if (t === "CAREERS") {
-              router.push("/(pages)/careers");
+              navigate(routes.CAREERS);
             }
           }}
         >

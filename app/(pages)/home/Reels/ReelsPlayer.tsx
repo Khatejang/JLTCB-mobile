@@ -1,6 +1,6 @@
 import { useVideoPlayer, VideoView } from "expo-video";
-import { StyleSheet, Dimensions, Pressable } from "react-native";
-import { useEffect, useState } from "react";
+import { StyleSheet, Dimensions } from "react-native";
+import { useEffect, } from "react";
 
 type Props = {
   video: number;

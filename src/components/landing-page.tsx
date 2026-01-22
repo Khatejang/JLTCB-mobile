@@ -1,9 +1,11 @@
 import { Image, ImageBackground } from "expo-image";
-import { useRouter } from "expo-router";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
+import { useNavigate } from "../hooks/useNavigate";
+import { routes } from "../constants/routes"
+
 export default function LandingPage() {
-  const { navigate } = useRouter();
+  const { navigate } = useNavigate();
 
   return (
     <View style={styles.container}>
@@ -21,7 +23,7 @@ export default function LandingPage() {
 
         <View style={styles.solutions}>
           <Pressable
-            onPress={() => navigate("/landing-page/customs-brokerage")}
+            onPress={() => navigate(routes.LANDING_PAGE2)}
             style={styles.solution}
           >
             <Image

@@ -2,12 +2,13 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Image, ImageBackground } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
-import { Link, useRouter } from "expo-router";
-import { Platform, Pressable, StyleSheet, View } from "react-native";
+import { Link } from "expo-router";
+import { Platform, TouchableOpacity, StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
-
+import { useNavigate } from "../hooks/useNavigate";
+import { routes } from "../constants/routes";
 export default function CustomsBrokerageLanding() {
-  const router = useRouter();
+  const {navigate} = useNavigate();
 
   return (
     <ImageBackground
@@ -35,7 +36,7 @@ export default function CustomsBrokerageLanding() {
             gap: 16,
           }}
         >
-          <Pressable onPress={() => router.push("/home")}>
+          <TouchableOpacity onPress={() => navigate(routes.HOME)}>
             <LinearGradient
               colors={["#161F3C", "#000000"]} // BUTTON gradient fill
               start={{ x: 0, y: 0 }}
@@ -47,7 +48,7 @@ export default function CustomsBrokerageLanding() {
                 Guest
               </Text>
             </LinearGradient>
-          </Pressable>
+          </TouchableOpacity>
           <Text variant="titleMedium" allowFontScaling={false}>
             Already have an account?{" "}
             <Link href="/sign-in" style={{ fontWeight: "bold" }}>
@@ -75,7 +76,7 @@ const openLink = (url: string) => {
 function SocialLogos() {
   return (
     <View style={styles.socialIconsContainer}>
-      <Pressable
+      <TouchableOpacity
         style={styles.socialLink}
         onPress={() => openLink("https://www.facebook.com/jltcb.ph")}
       >
@@ -83,8 +84,8 @@ function SocialLogos() {
           style={styles.socialIcon}
           source={require("../assets/social_logos/facebook.png")}
         />
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
         style={styles.socialLink}
         onPress={() =>
           openLink("https://www.instagram.com/jltcustomsbrokerage/</View>")
@@ -94,8 +95,8 @@ function SocialLogos() {
           style={styles.socialIcon}
           source={require("../assets/social_logos/instagram.png")}
         />
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
         style={styles.socialLink}
         onPress={() =>
           openLink("https://www.youtube.com/@jilll.tolentinocustomsbrok4791")
@@ -105,8 +106,8 @@ function SocialLogos() {
           style={styles.socialIcon}
           source={require("../assets/social_logos/youtube.png")}
         />
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
         style={styles.socialLink}
         onPress={() => openLink("https://www.tiktok.com/@jltcustomsbrokerage")}
       >
@@ -114,8 +115,8 @@ function SocialLogos() {
           style={styles.socialIcon}
           source={require("../assets/social_logos/tiktok.png")}
         />
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
         style={styles.socialLink}
         onPress={() => openLink("https://x.com/jltcb_ph")}
       >
@@ -123,8 +124,8 @@ function SocialLogos() {
           style={styles.socialIcon}
           source={require("../assets/social_logos/linkedIn.png")}
         />
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
         style={styles.socialLink}
         onPress={() => openLink("https://x.com/jltcb_ph")}
       >
@@ -132,7 +133,7 @@ function SocialLogos() {
           style={styles.socialIcon}
           source={require("../assets/social_logos/twitter.png")}
         />
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 }

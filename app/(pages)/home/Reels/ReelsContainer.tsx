@@ -1,5 +1,7 @@
 import { Image } from "expo-image";
-import { useRouter } from "expo-router";
+import { useNavigate } from "@/src/hooks/useNavigate";
+import { routes } from "@/src/constants/routes";
+
 import {
   Dimensions,
   FlatList,
@@ -55,7 +57,7 @@ const data = [
 export default function ReelsConatainer() {
   const screenWidth = Dimensions.get("window").width;
 
-  const router = useRouter();
+  const {navigate} = useNavigate();
 
   return (
     <View style={styles.videoContainer}>
@@ -69,7 +71,7 @@ export default function ReelsConatainer() {
             return (
               <TouchableOpacity
                 onPress={() =>
-                  router.push({
+                  navigate({
                     pathname: "/(pages)/home/Reels/ReelsFullScreen",
                     params: {id: item.id },
                   })

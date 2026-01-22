@@ -1,16 +1,17 @@
 import { useCallback, useState, useEffect } from "react";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
-import { useLocalSearchParams, useFocusEffect, useRouter } from "expo-router";
+import { useLocalSearchParams, useFocusEffect } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-
+import { useNavigate } from "@/src/hooks/useNavigate";
+import { routes } from "@/src/constants/routes";
 const videoMap: Record<string, number> = {
   v1: require("../../../../src/assets/reels/vid_1.mp4"),
   v2: require("../../../../src/assets/reels/vid_2.mp4"),
 };
 
 export default function ReelsFullScreen() {
-  const router = useRouter();
+  const {navigate} = useNavigate();
   const { id } = useLocalSearchParams();
 
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -61,7 +62,7 @@ export default function ReelsFullScreen() {
           nativeControls={false}
         />
         <View style={styles.headerOverlay}>
-          <TouchableOpacity onPress={() => router.push("/(pages)/home")}>
+          <TouchableOpacity onPress={() => navigate(routes.HOME)}>
             <Ionicons name="close" size={28} color="white" />
           </TouchableOpacity>
         </View>
