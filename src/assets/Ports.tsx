@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { FlatList, View } from "react-native";
 import { Button, Card, Text } from "react-native-paper";
-import ports, { PortData, PortItem, Region } from "./portsPlace";
+import ports, { PortData, PortItem, Region } from "../constants/ports";
 
 export default function Ports() {
   const [activeRegion, setActiveRegion] = useState<Region>("Luzon");
@@ -55,7 +55,9 @@ export default function Ports() {
               }}
               onPress={() => setActiveRegion(item.region as Region)}
             >
-              <Text allowFontScaling={false} style={{fontSize:10}}>{item.region}</Text>
+              <Text allowFontScaling={false} style={{ fontSize: 10 }}>
+                {item.region}
+              </Text>
             </Button>
           );
         }}

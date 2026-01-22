@@ -1,6 +1,6 @@
 import { ImageBackground } from "expo-image";
 import { ScrollView, Text, View } from "react-native";
-import Form from "./Form";
+import Form from "../../../src/components/quote-section/Form";
 
 export default function Index() {
   return (

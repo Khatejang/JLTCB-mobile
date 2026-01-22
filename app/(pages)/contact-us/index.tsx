@@ -1,4 +1,4 @@
-import ContactDetails from "@/app/(pages)/contact-us/ContactDetails";
+import ContactDetails from "@/src/components/contact-section/ContactDetails";
 import { Image, ImageBackground } from "expo-image";
 import { Text, View } from "react-native";
 

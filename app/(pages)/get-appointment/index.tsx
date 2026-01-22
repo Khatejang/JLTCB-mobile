@@ -1,7 +1,7 @@
 import { ImageBackground } from "expo-image";
 import { FlatList, Text, View } from "react-native";
-import Form from "./Form";
-import TimeDate from "./TimeDate";
+import Form from "../../../src/components/appointment-section/Form";
+import TimeDate from "../../../src/components/appointment-section/TimeDate";
 
 export default function GetAppointment() {
   return (

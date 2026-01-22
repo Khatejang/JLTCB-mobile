@@ -1,8 +1,8 @@
 import { ImageBackground } from "expo-image";
 import { StyleSheet, Text, View } from "react-native";
 import { ProgressBar } from "react-native-paper";
-import ColumnServices from "./ColumnServices";
-import RowServices from "./RowServices";
+import ColumnServices from "../../../src/components/services-section/ColumnServices";
+import RowServices from "../../../src/components/services-section/RowServices";
 
 export default function Index() {
   return (

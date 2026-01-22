@@ -1,4 +1,4 @@
-import TARIFF_SCHEDULES from "@/src/constants/tariffSchedules";
+import TARIFF_SCHEDULES from "@/src/constants/tariff_schedules";
 import { useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Button, Checkbox } from "react-native-paper";

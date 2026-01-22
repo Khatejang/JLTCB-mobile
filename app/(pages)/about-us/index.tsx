@@ -1,7 +1,7 @@
 import { Image } from "expo-image";
 import { ScrollView, Text, View } from "react-native";
-import CardTemplate2 from "@/app/(pages)/about-us/CoreValuesTemplate";
-import Pillars from "@/app/(pages)/about-us/PrincipleList";
+import CardTemplate2 from "@/src/components/about-section/CoreValuesTemplate";
+import Pillars from "@/src/components/about-section/PrincipleList";
 import styles from "./indexStyles";
 
 export default function Index() {

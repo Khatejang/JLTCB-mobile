@@ -1,8 +1,8 @@
 import { Image, ImageBackground } from "expo-image";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 
-import { useNavigate } from "../hooks/useNavigate";
-import { routes } from "../constants/routes"
+import { routes } from "../../constants/routes";
+import { useNavigate } from "../../hooks/useNavigate";
 
 export default function LandingPage() {
   const { navigate } = useNavigate();
@@ -13,7 +13,7 @@ export default function LandingPage() {
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
-            source={require("../assets/black_logos/logo.png")}
+            source={require("../../assets/black_logos/logo.png")}
             contentFit="contain"
           />
           <Text style={styles.title} allowFontScaling={false}>
@@ -28,7 +28,7 @@ export default function LandingPage() {
           >
             <Image
               style={styles.image}
-              source={require("../assets/landing-page/customs-brokerage.png")}
+              source={require("../../assets/landing-page/customs-brokerage.png")}
               contentFit="contain"
             />
             <Text style={styles.solutionText} allowFontScaling={false}>
@@ -38,7 +38,7 @@ export default function LandingPage() {
           <View style={styles.solution}>
             <Image
               style={styles.image}
-              source={require("../assets/landing-page/global-trade.png")}
+              source={require("../../assets/landing-page/global-trade.png")}
               contentFit="contain"
             />
             <Text style={styles.solutionText} allowFontScaling={false}>
@@ -48,7 +48,7 @@ export default function LandingPage() {
           <View style={styles.solution}>
             <Image
               style={styles.image}
-              source={require("../assets/landing-page/world-wide-logistics.png")}
+              source={require("../../assets/landing-page/world-wide-logistics.png")}
               contentFit="contain"
             />
             <Text style={styles.solutionText} allowFontScaling={false}>
@@ -60,12 +60,12 @@ export default function LandingPage() {
 
       <ImageBackground
         style={styles.bottomBanner}
-        source={require("../assets/banners/large.png")}
+        source={require("../../assets/banners/large.png")}
         contentFit="fill"
       >
         <Image
           style={styles.skyline}
-          source={require("../assets/landing-page/skyline_vector_white 1.png")}
+          source={require("../../assets/landing-page/skyline_vector_white 1.png")}
           contentFit="cover"
         />
       </ImageBackground>

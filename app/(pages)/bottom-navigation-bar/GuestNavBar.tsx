@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigate } from "../../../src/hooks/useNavigate";
 import { routes } from "../../../src/constants/routes";
-import MenuItem from "@/src/components/nav-bar/MenuItem";
+import MenuItem from "@/src/components/nav-bar-section/MenuItem";
 import { left_menu, right_menu } from "@/src/constants/menu_item";
 
 export default function NavigationBar() {

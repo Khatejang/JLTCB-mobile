@@ -1,12 +1,7 @@
 import { ImageBackground } from "expo-image";
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  Text,
-} from "react-native";
-import Ports from "./Ports";
-import ports from "./portsPlace";
+import { Dimensions, FlatList, Image, Text } from "react-native";
+import Ports from "../../../src/assets/Ports";
+import ports from "../../../src/constants/ports";
 
 export default function Index() {
   const screenWidth = Dimensions.get("window").width;

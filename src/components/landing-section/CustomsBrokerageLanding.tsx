@@ -3,16 +3,16 @@ import { Image, ImageBackground } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
 import { Link } from "expo-router";
-import { Platform, TouchableOpacity, StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "react-native-paper";
-import { useNavigate } from "../hooks/useNavigate";
-import { routes } from "../constants/routes";
+import { routes } from "../../constants/routes";
+import { useNavigate } from "../../hooks/useNavigate";
 export default function CustomsBrokerageLanding() {
-  const {navigate} = useNavigate();
+  const { navigate } = useNavigate();
 
   return (
     <ImageBackground
-      source={require("../assets/landingPage.png")}
+      source={require("../../assets/landingPage.png")}
       style={styles.image}
     >
       <View style={styles.whiteOverlay} />
@@ -20,7 +20,7 @@ export default function CustomsBrokerageLanding() {
       <View style={styles.main}>
         <View>
           <Image
-            source={require("../assets/customs-brokerage/customs-brokerage.png")}
+            source={require("../../assets/customs-brokerage/customs-brokerage.png")}
             style={styles.logoImage}
             contentFit="contain"
           />
@@ -60,7 +60,7 @@ export default function CustomsBrokerageLanding() {
 
       <ImageBackground
         style={styles.bottomBanner}
-        source={require("../assets/banners/large.png")}
+        source={require("../../assets/banners/large.png")}
         contentFit="fill"
       >
         <SocialLogos />
@@ -82,7 +82,7 @@ function SocialLogos() {
       >
         <Image
           style={styles.socialIcon}
-          source={require("../assets/social_logos/facebook.png")}
+          source={require("../../assets/social_logos/facebook.png")}
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -93,7 +93,7 @@ function SocialLogos() {
       >
         <Image
           style={styles.socialIcon}
-          source={require("../assets/social_logos/instagram.png")}
+          source={require("../../assets/social_logos/instagram.png")}
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -104,7 +104,7 @@ function SocialLogos() {
       >
         <Image
           style={styles.socialIcon}
-          source={require("../assets/social_logos/youtube.png")}
+          source={require("../../assets/social_logos/youtube.png")}
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -113,7 +113,7 @@ function SocialLogos() {
       >
         <Image
           style={styles.socialIcon}
-          source={require("../assets/social_logos/tiktok.png")}
+          source={require("../../assets/social_logos/tiktok.png")}
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -122,7 +122,7 @@ function SocialLogos() {
       >
         <Image
           style={styles.socialIcon}
-          source={require("../assets/social_logos/linkedIn.png")}
+          source={require("../../assets/social_logos/linkedIn.png")}
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -131,7 +131,7 @@ function SocialLogos() {
       >
         <Image
           style={styles.socialIcon}
-          source={require("../assets/social_logos/twitter.png")}
+          source={require("../../assets/social_logos/twitter.png")}
         />
       </TouchableOpacity>
     </View>

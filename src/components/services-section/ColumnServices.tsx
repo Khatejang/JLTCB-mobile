@@ -5,44 +5,44 @@ import { Card } from "react-native-paper";
 export default function ColumnServices() {
   const data = [
     {
-      image: require("../../../src/assets/services/column/1.png"),
+      image: require("../../assets/services/column/1.png"),
       title: "IMPORT EXPORT CUSTOMS CLEARANCE",
       description:
         "24/7 customs clearance for all shipment types, ensuring fast compliance with Philippine regulations.",
     },
     {
-      image: require("../../../src/assets/services/column/2.png"),
+      image: require("../../assets/services/column/2.png"),
       title: "PEZA PROCESSING & COMPLIANCE",
       description:
         "Full support for PEZA-registered businesses permits, documentation, and tax incentive processing.",
     },
     {
-      image: require("../../../src/assets/services/column/3.png"),
+      image: require("../../assets/services/column/3.png"),
       title: "PERMITS AND LICENSES",
       description:
         "End-to-end management of trade permits, accreditations, renewals, and government approvals.",
     },
     {
-      image: require("../../../src/assets/services/column/4.png"),
+      image: require("../../assets/services/column/4.png"),
       title: "CUSTOMS DISPUTE RESOLUTION",
       description:
         "Expert handling of seizures, abandoned shipments, manifest errors, and complex customs cases.",
     },
     {
-      image: require("../../../src/assets/services/column/5.png"),
+      image: require("../../assets/services/column/5.png"),
       title: "POST-CLEARANCE SERVICES",
       description:
         "Audit-ready support beyond release, including Post-Clearance Audit (PCA) compliance.",
     },
     {
-      image: require("../../../src/assets/services/column/6.png"),
+      image: require("../../assets/services/column/6.png"),
       title: "CUSTOMS & TRADE CONSULTANCY",
       description:
         "Guidance on tariffs, trade rules, and logistics for cost-efficient, compliant operations.",
     },
   ];
   return (
-    <View style={{ height: "61%", margin: 0 }}>
+    <View style={{ height: "60%", margin: 0 }}>
       <FlatList
         data={data}
         keyExtractor={(_, index) => index.toString()}

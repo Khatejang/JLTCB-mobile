@@ -9,7 +9,7 @@ import {
   Checkbox,
 } from "react-native-paper";
 import { Field, OJTFormData, PositionsSample } from "@/src/types/careers";
-import FileUploader from "./SubForm_FileUploader";
+import FileUploader from "../../../src/components/career-section/SubForm_FileUploader";
 import * as Linking from "expo-linking";
 
 const openLink = (url: string) => {
