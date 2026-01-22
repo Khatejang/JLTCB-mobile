@@ -57,9 +57,7 @@ export default function SplashScreen() {
 
     rightAnim.value = withDelay(1000, withTiming(width * 2, { duration: 800 }));
 
-    fadeAnim.value = withDelay(1800, withTiming(1, { duration: 800 }));
-
-    fadeAnim.value = withDelay(2800, withTiming(0, { duration: 800 }));
+    fadeAnim.value = withDelay(1800, withTiming(1, { duration: 100 }));
 
     finalFade.value = withDelay(
       3600,
