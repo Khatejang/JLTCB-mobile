@@ -1,137 +1,112 @@
-import ports from "@/src/constants/ports-catered";
+import PortAccordion from "@/src/components/ports-catered/PortAccordion";
+import PortRegionButtons from "@/src/components/ports-catered/PortRegionButtons";
+import ports, { REGIONS } from "@/src/constants/ports-catered";
 import type { Region } from "@/src/types/ports";
-import { Ionicons } from "@expo/vector-icons";
+import { ImageBackground } from "expo-image";
 import { useState } from "react";
-import { FlatList, View } from "react-native";
-import { Button, Card, Text } from "react-native-paper";
+import {
+	Dimensions,
+	FlatList,
+	Image,
+	StyleSheet,
+	Text,
+	View,
+} from "react-native";
+
+type ExpandedPorts = Record<Region, string | null>;
+
+const initialExpandedPorts = REGIONS.reduce((acc, region) => {
+	const regionData = ports.find((r) => r.region === region);
+	acc[region] = regionData?.ports[0]?.port ?? null;
+	return acc;
+}, {} as ExpandedPorts);
 
 export default function Ports() {
-	const [activeRegion, setActiveRegion] = useState<Region>("Luzon");
-	const [expandedPorts, setExpandedPorts] = useState<string[]>([]);
-	const regionPorts = ports.find((port) => port.region === activeRegion)?.ports;
+	const [selectedRegion, setSelectedRegion] = useState<Region>(REGIONS[0]);
+	const [expandedPorts, setExpandedPorts] =
+		useState<ExpandedPorts>(initialExpandedPorts);
 
-	function handleExpandCardPort(portName: string) {
-		if (expandedPorts.includes(portName)) {
-			setExpandedPorts((prevExpandedPorts) => {
-				const nextExpandedPorts = prevExpandedPorts.filter(
-					(port) => port !== portName,
-				);
-				return nextExpandedPorts;
-			});
-			return;
-		}
-		setExpandedPorts((e) => [...e, portName]);
-	}
+	const togglePort = (port: string) =>
+		setExpandedPorts((prev) => ({
+			...prev,
+			[selectedRegion]: prev[selectedRegion] === port ? null : port,
+		}));
 
-	const isExpanded = (portName: string) => expandedPorts.includes(portName);
+	const regionPorts = ports.find(
+		(port) => port.region === selectedRegion,
+	)?.ports;
+
+	const screenWidth = Dimensions.get("window").width;
+
+	const mapImage = require("../../../src/assets/ports_catered/map.png");
+	const { width, height } = Image.resolveAssetSource(mapImage);
+	const scaledHeight = (screenWidth * height) / width;
 
 	return (
-		<View style={{ marginHorizontal: 10, gap: 10 }}>
-			{/* Region Selector Buttons */}
-			<FlatList
-				data={ports}
-				horizontal
-				keyExtractor={(item) => item.region}
-				scrollEnabled={false}
-				renderItem={({ item }) => {
-					const isActive = activeRegion === item.region;
-					return (
-						<Button
-							mode="outlined"
-							style={{
-								borderColor: isActive ? "#EE9034" : "#888888ff",
-								backgroundColor: isActive ? "#EE9034" : "#ffffff",
-								borderRadius: 2,
-								marginRight: 10,
-							}}
-							labelStyle={{
-								color: isActive ? "#ffffff" : "#888888ff",
-							}}
-							onPress={() => setActiveRegion(item.region as Region)}
-						>
-							<Text allowFontScaling={false} style={{ fontSize: 10 }}>
-								{item.region}
-							</Text>
-						</Button>
-					);
-				}}
-			/>
-
-			{/* Ports List for Active Region */}
-			<FlatList
-				style={{ paddingBlockEnd: 12 }}
-				data={regionPorts}
-				keyExtractor={(port) => port.port}
-				renderItem={({ item: portItem }) => (
-					<Card
-						onPress={() => handleExpandCardPort(portItem.port)}
-						style={{ marginVertical: 4 }}
+		<FlatList
+			contentContainerStyle={styles.container}
+			data={regionPorts}
+			keyExtractor={(item) => item.port}
+			ListHeaderComponent={
+				<>
+					<ImageBackground
+						source={require("../../../src/assets/banners/small.png")}
+						style={{
+							aspectRatio: 3,
+							paddingVertical: 30,
+							paddingHorizontal: 40,
+						}}
+						contentFit="cover"
 					>
-						<Card.Content style={{ paddingVertical: 8, paddingHorizontal: 12 }}>
-							<View
-								style={{
-									flexDirection: "row",
-									alignItems: "center",
-									justifyContent: "space-between",
-									gap: 10,
-								}}
-							>
-								<View
-									style={{
-										flexDirection: "row",
-										alignItems: "center",
-										gap: 5,
-									}}
-								>
-									<Ionicons name="boat" size={18} />
-									<Text allowFontScaling={false}>{portItem.port}</Text>
-								</View>
-								<Button
-									compact
-									contentStyle={{
-										paddingHorizontal: 0,
-										paddingVertical: 0,
-									}}
-								>
-									{isExpanded(portItem.port) ? (
-										<Ionicons
-											name="arrow-up-circle"
-											size={22}
-											color="#EE9034"
-										/>
-									) : (
-										<Ionicons
-											name="arrow-down-circle"
-											size={22}
-											color="#EE9034"
-										/>
-									)}
-								</Button>
-							</View>
-							{isExpanded(portItem.port) && (
-								<View
-									style={{
-										paddingBlock: 8,
-									}}
-								>
-									{portItem.subPorts.length > 0 ? (
-										<FlatList
-											data={portItem.subPorts}
-											renderItem={({ item }) => (
-												<Text key={item} allowFontScaling={false}>
-													• {item}
-												</Text>
-											)}
-										/>
-									) : (
-										<Text allowFontScaling={false}>No Sub-Ports!</Text>
-									)}
-								</View>
-							)}
-						</Card.Content>
-					</Card>
-				)}
-			/>
-		</View>
+						<Text
+							style={{
+								color: "#EE9034",
+								fontSize: 20,
+								fontWeight: "500",
+							}}
+							allowFontScaling={false}
+						>
+							PORTS CATERED
+						</Text>
+					</ImageBackground>
+
+					<Image
+						source={mapImage}
+						resizeMode="contain"
+						style={{
+							width: screenWidth,
+							height: scaledHeight,
+							marginTop: -30,
+						}}
+					/>
+
+					<View style={styles.contentSpacer}>
+						<PortRegionButtons
+							selectedRegion={selectedRegion}
+							setSelectedRegion={setSelectedRegion}
+						/>
+					</View>
+				</>
+			}
+			renderItem={({ item }) => (
+				<View style={styles.contentSpacer}>
+					<PortAccordion
+						port={item}
+						toggleExpand={togglePort}
+						expanded={expandedPorts[selectedRegion] === item.port}
+					/>
+				</View>
+			)}
+		/>
 	);
 }
+
+const styles = StyleSheet.create({
+	container: {
+		paddingBottom: 12,
+		gap: 12,
+	},
+	contentSpacer: {
+		paddingHorizontal: 10,
+	},
+});
