@@ -1,4 +1,4 @@
-export default [
+export const TARIFF_SCHEDULES = [
   {
     label: "ASEAN-Australia-New Zealand Free Trade Agreement",
     value: "AANZFTA",

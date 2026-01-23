@@ -1,7 +1,7 @@
 import { routes } from "./routes";
 
 
-export const left_menu = [
+export const leftMenu = [
   { label: "Governance", route: routes.GOVERNANCE },
   { label: "About Us", route: routes.ABOUT },
   { label: "Contact Us", route: routes.CONTACT },
@@ -9,7 +9,7 @@ export const left_menu = [
   { label: "Ports Catered", route: routes.PORTS },
 ];
 
-export const right_menu = [
+export const rightMenu = [
   { label: "Get Quote", route:routes.QUOTE },
   { label: "Get Appointment", route: routes.APPOINTMENT },
   { label: "AHTN Checker", route: routes.AHTN },
