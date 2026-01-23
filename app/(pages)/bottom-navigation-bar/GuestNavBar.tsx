@@ -1,13 +1,14 @@
-import MenuItem from "@/src/components/nav-bar-section/MenuItem";
-import { leftMenu, rightMenu } from "@/src/constants/bottom-navigation-bar";
-import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { routes } from "../../../src/constants/routes";
 import { useNavigate } from "../../../src/hooks/useNavigate";
 
+import MenuItem from "@/src/components/nav-bar-section/MenuItem";
+import ButtonIcon from "@/src/components/nav-bar-section/ButtonIcon";
+import { leftMenu, rightMenu } from "@/src/constants/bottom-navigation-bar";
 export default function NavigationBar() {
 	const insets = useSafeAreaInsets();
 
@@ -33,88 +34,97 @@ export default function NavigationBar() {
 		}
 	};
 
-	return (
-		<>
-			{/* Navigation Bar */}
-			<View
-				style={[
-					styles.navContainer,
-					{ height: 40 + insets.bottom, paddingBottom: insets.bottom },
-				]}
-			>
-				<TouchableOpacity onPress={() => toggleMenu("left")}>
-					<Ionicons name="newspaper" size={25} color="#898989" />
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => navigate(routes.HOME)}>
-					<Ionicons name="home" size={25} color="#EE9034" />
-				</TouchableOpacity>
-				<TouchableOpacity onPress={() => toggleMenu("right")}>
-					<Ionicons name="clipboard" size={25} color="#898989" />
-				</TouchableOpacity>
-			</View>
+  return (
+    <>
+      {/* Navigation Bar */}
+      <View
+        style={[
+          styles.navContainer,
+          { height: 40 + insets.bottom, paddingBottom: insets.bottom },
+        ]}
+      >
+        <ButtonIcon
+          onPress={() => toggleMenu("left")}
+          iconName="newspaper"
+          iconSize={25}
+          iconColor="#898989"
+        />
+        <ButtonIcon
+          onPress={() => navigate(routes.HOME)}
+          iconName="home"
+          iconSize={25}
+          iconColor="#EE9034"
+        />
+        <ButtonIcon
+          onPress={() => toggleMenu("right")}
+          iconName="clipboard"
+          iconSize={25}
+          iconColor="#898989"
+        />
+      </View>
 
-			{/* Curve Left */}
-			{leftMenuVisible && (
-				<View style={[styles.borderContainer, { bottom: 40 + insets.bottom }]}>
-					<LinearGradient
-						colors={["#1d2b5b", "#d5893c", "#ffffff"]}
-						start={{ x: 0, y: 0 }}
-						end={{ x: 1, y: 1 }}
-						style={styles.leftBorder}
-					>
-						<View
-							style={[
-								styles.menuContainer,
-								{
-									borderTopRightRadius: 300,
-									paddingLeft: 20,
-								},
-							]}
-						>
-							{leftMenu.map((item) => (
-								<MenuItem
-									key={item.route}
-									label={item.label}
-									onPress={() => navigate(item.route)}
-								/>
-							))}
-						</View>
-					</LinearGradient>
-				</View>
-			)}
+      {/* Curve Left */}
+      {leftMenuVisible && (
+        <View style={[styles.borderContainer, { bottom: 40 + insets.bottom }]}>
+          <LinearGradient
+            colors={["#1d2b5b", "#d5893c", "#ffffff"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.leftBorder}
+          >
+            <View
+              style={[
+                styles.menuContainer,
+                {
+                  borderTopRightRadius: 300,
+                  paddingLeft: 20,
+                },
+              ]}
+            >
+              {leftMenu.map((item) => (
+                <MenuItem
+                  key={item.route}
+                  label={item.label}
+                  onPress={() => navigate(item.route)}
+                />
+              ))}
+            </View>
+          </LinearGradient>
+        </View>
+      )}
 
-			{/* Curve Right */}
-			{rightMenuVisible && (
-				<View style={[styles.borderContainer, { bottom: 40 + insets.bottom }]}>
-					<LinearGradient
-						colors={["#1d2b5b", "#d5893c", "#ffffff"]}
-						start={{ x: 1, y: 0 }}
-						end={{ x: 0, y: 1 }}
-						style={styles.rightBorder}
-					>
-						<View
-							style={[
-								styles.menuContainer,
-								{
-									borderTopLeftRadius: 300,
-									paddingRight: 20,
-									alignItems: "flex-end",
-								},
-							]}
-						>
-							{rightMenu.map((item) => (
-								<MenuItem
-									key={item.route}
-									label={item.label}
-									onPress={() => navigate(item.route)}
-								/>
-							))}
-						</View>
-					</LinearGradient>
-				</View>
-			)}
-		</>
-	);
+      {/* Curve Right */}
+      {rightMenuVisible && (
+        <View style={[styles.borderContainer, { bottom: 40 + insets.bottom }]}>
+          <LinearGradient
+            colors={["#1d2b5b", "#d5893c", "#ffffff"]}
+            start={{ x: 1, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            style={styles.rightBorder}
+          >
+            <View
+              style={[
+                styles.menuContainer,
+                {
+                  borderTopLeftRadius: 300,
+                  paddingRight: 20,
+                  alignItems: "flex-end",
+                },
+              ]}
+            >
+              {rightMenu.map((item) => (
+                <MenuItem
+                  key={item.route}
+                  label={item.label}
+                  onPress={() => navigate(item.route)}
+                />
+              ))}
+            </View>
+          </LinearGradient>
+        </View>
+      )}
+    </>
+  );
 }
 const styles = StyleSheet.create({
 	navContainer: {
