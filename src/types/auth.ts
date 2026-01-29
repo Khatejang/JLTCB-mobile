@@ -5,9 +5,13 @@ export type UserRole =
   | "Human Resource";
 
 export type User = {
-  id: number;
-  first_name: string;
-  last_name: string;
-  full_name: string;
-  role: UserRole;
+  id: number,
+  first_name: string,
+  last_name: string,
+  full_name: string,
+  role: UserRole,
+  email:string,
+  address: string,
+  created_at: string,
+  updated_at: string,
 };

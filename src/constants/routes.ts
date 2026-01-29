@@ -10,6 +10,7 @@ export const routes = {
   QUOTE: "/(pages)/get-quote",
   APPOINTMENT: "/(pages)/get-appointment",
   AHTN: "/(pages)/ahtn-checker",
+  LANDING_PAGE: "/(pages)/landing-page",
   LANDING_PAGE2: "/(pages)/landing-page/customs-brokerage",
   CAREERS: "/(pages)/careers",
   ARTICLE: "/(pages)/home/NewsArtice",

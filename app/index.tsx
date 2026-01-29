@@ -1,6 +1,6 @@
 import { Asset } from "expo-asset";
 import { Image } from "expo-image";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Dimensions, StyleSheet } from "react-native";
 import Animated, {
   runOnJS,
@@ -13,7 +13,8 @@ import {useNavigate} from "@/src/hooks/useNavigate";
 
 const { width, height } = Dimensions.get("window");
 
-export default function SplashScreen() {
+
+export default function SplashScreen({ onFinish } : any) {
   const {replace} = useNavigate();
 
   const rotateAnim = useSharedValue(0);
@@ -62,7 +63,7 @@ export default function SplashScreen() {
     finalFade.value = withDelay(
       3600,
       withTiming(1, { duration: 500 }, () => {
-        runOnJS(replace)("/(pages)/landing-page");
+        runOnJS(onFinish)();
       }),
     );
   }, [imagesLoaded]);
@@ -84,7 +85,7 @@ export default function SplashScreen() {
   }));
 
   const backgroundStyle = useAnimatedStyle(() => ({
-    backgroundColor: finalFade.value === 1 ? "#161F3C" : "transparent",
+    backgroundColor: finalFade.value === 1 ? "#161F3C" : "#fffffff",
   }));
 
   return (
