@@ -10,7 +10,7 @@ type AuthContextType = {
   role: string | null;
   token: string | null;
   userData: User | null;
-  
+
   isLoading: boolean;
   loginContext: typeof login;
   logoutContext: () => ReturnType<typeof logout>;
@@ -30,10 +30,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const loadAuth = async () => {
       const storedToken = await SecureStore.getItemAsync("token");
       const storedRole = await SecureStore.getItemAsync("role");
+      const storedUser = await SecureStore.getItemAsync("userData");
 
       if (storedToken && storedRole) {
         setToken(storedToken);
         setRole(storedRole);
+        if (storedUser) {
+          setUserData(JSON.parse(storedUser));
+        }
       }
 
       setIsLoading(false);
@@ -55,6 +59,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       await SecureStore.setItemAsync("token", token);
       await SecureStore.setItemAsync("role", userRole);
+      await SecureStore.setItemAsync("userData", JSON.stringify(userData));
 
       setToken(token);
       setRole(userRole);

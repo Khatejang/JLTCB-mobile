@@ -15,7 +15,7 @@ const hidePaths = {
 };
 export default function RootNaviagtion() {
   const { replace } = useNavigate();
-  const { token, role, isLoading } = useAuth();
+  const { token, role, userData, isLoading } = useAuth();
 
   const pathname = usePathname();
 
@@ -24,7 +24,7 @@ export default function RootNaviagtion() {
     pathname === "/" || hidePaths.navigationBar.includes(pathname);
 
 
-    console.log("rootnavigtion.tsx", role, token)
+    console.log("rootnavigtion.tsx", role, token,userData)
 
   useEffect(() => {
     if (isLoading) return;

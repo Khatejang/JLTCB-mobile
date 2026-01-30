@@ -9,22 +9,19 @@ import Animated, {
   withDelay,
   withTiming,
 } from "react-native-reanimated";
-import {useNavigate} from "@/src/hooks/useNavigate";
 
 const { width, height } = Dimensions.get("window");
 
-
-export default function SplashScreen({ onFinish } : any) {
-  const {replace} = useNavigate();
-
+export default function SplashScreen() {
   const rotateAnim = useSharedValue(0);
   const fadeAnim = useSharedValue(0);
   const leftAnim = useSharedValue(0);
   const rightAnim = useSharedValue(0);
-  const finalFade = useSharedValue(0);
+  const finalFade = useSharedValue(1); // start fully visible
 
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
+  // Preload all images
   useEffect(() => {
     const imagesToLoad = [
       require("../src/assets/black_logos/full_logo.png"),
@@ -41,7 +38,7 @@ export default function SplashScreen({ onFinish } : any) {
 
     async function loadAssets() {
       const cacheImages = imagesToLoad.map((img) =>
-        Asset.fromModule(img).downloadAsync(),
+        Asset.fromModule(img).downloadAsync()
       );
       await Promise.all(cacheImages);
       setImagesLoaded(true); // mark images as loaded
@@ -49,25 +46,23 @@ export default function SplashScreen({ onFinish } : any) {
     loadAssets();
   }, []);
 
+  // Start animation once images are loaded
   useEffect(() => {
     if (!imagesLoaded) return;
 
     rotateAnim.value = withTiming(26, { duration: 1000 });
-
     leftAnim.value = withDelay(1000, withTiming(-width * 2, { duration: 800 }));
-
     rightAnim.value = withDelay(1000, withTiming(width * 2, { duration: 800 }));
-
     fadeAnim.value = withDelay(1800, withTiming(1, { duration: 100 }));
 
+    // Final fade-out
     finalFade.value = withDelay(
-      3600,
-      withTiming(1, { duration: 500 }, () => {
-        runOnJS(onFinish)();
-      }),
+      2500,
+      withTiming(0, { duration: 500 }) // fade to 0 opacity
     );
   }, [imagesLoaded]);
 
+  // Animated styles
   const rotateStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotateAnim.value}deg` }],
   }));
@@ -84,28 +79,25 @@ export default function SplashScreen({ onFinish } : any) {
     opacity: fadeAnim.value,
   }));
 
-  const backgroundStyle = useAnimatedStyle(() => ({
-    backgroundColor: finalFade.value === 1 ? "#161F3C" : "#fffffff",
+  const containerStyle = useAnimatedStyle(() => ({
+    opacity: finalFade.value,
+    zIndex: finalFade.value === 0 ? -1 : 999, // hide behind app when done
   }));
 
   return (
-    <Animated.View style={[styles.container, backgroundStyle]}>
+    <Animated.View style={[styles.container, containerStyle]}>
       <Animated.View style={[styles.halfContainer, rotateStyle]}>
         <Animated.View
           style={[
             styles.half,
-            {
-              backgroundColor: "#EE9034",
-            },
+            { backgroundColor: "#EE9034" },
             leftStyle,
           ]}
         />
         <Animated.View
           style={[
             styles.half,
-            {
-              backgroundColor: "#161F3C",
-            },
+            { backgroundColor: "#161F3C" },
             rightStyle,
           ]}
         />
@@ -124,10 +116,10 @@ export default function SplashScreen({ onFinish } : any) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
+    ...StyleSheet.absoluteFillObject,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#fff",
   },
   halfContainer: {
     width: width * 2,

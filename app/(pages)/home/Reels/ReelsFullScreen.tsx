@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, } from "react";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useLocalSearchParams, useFocusEffect } from "expo-router";
@@ -11,7 +11,7 @@ const videoMap: Record<string, number> = {
 };
 
 export default function ReelsFullScreen() {
-  const {navigate} = useNavigate();
+  const { navigate } = useNavigate();
   const { id } = useLocalSearchParams();
 
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
@@ -34,8 +34,9 @@ export default function ReelsFullScreen() {
       player.play();
       return () => {
         player.pause();
+        player.unloadAsync?.();
       };
-    }, [player, source])
+    }, [player, source]),
   );
 
   useEffect(() => {

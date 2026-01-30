@@ -39,7 +39,7 @@ export default function NavigationBar() {
 			<View
 				style={[
 					styles.navContainer,
-					{ height: 40 + insets.bottom, paddingBottom: insets.bottom },
+					{ height: 50 + insets.bottom, paddingBottom: insets.bottom },
 				]}
 			>
 				<ButtonIcon
@@ -128,7 +128,7 @@ export default function NavigationBar() {
 const styles = StyleSheet.create({
 	navContainer: {
 		flexDirection: "row",
-		alignItems: "flex-end",
+		alignItems: "center",
 		justifyContent: "space-evenly",
 		backgroundColor: "#ffffffff",
 	},
