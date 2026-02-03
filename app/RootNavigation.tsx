@@ -23,9 +23,6 @@ export default function RootNaviagtion() {
   const hideNavigationBar =
     pathname === "/" || hidePaths.navigationBar.includes(pathname);
 
-
-    console.log("rootnavigtion.tsx", role, token,userData)
-
   useEffect(() => {
     if (isLoading) return;
 

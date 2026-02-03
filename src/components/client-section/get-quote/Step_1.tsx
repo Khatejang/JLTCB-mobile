@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { StyleSheet, View } from "react-native";
 import { Surface, Text, TextInput } from "react-native-paper";
 import { QuoteForm, Field } from "../../../types/client";
@@ -26,7 +26,7 @@ export default function Step_1({
           </Text>
           <Surface style={{ elevation: 10, borderRadius: 10 }}>
             <TextInput
-              value={formData[field.key] ?? ""}
+              value={formData.company?.[field.key] ?? ""}
               underlineColor="transparent"
               activeUnderlineColor="transparent"
               selectionColor="blue"
@@ -40,7 +40,10 @@ export default function Step_1({
                 roundness: 10,
               }}
               onChangeText={(text) => {
-                setFormData((prev) => ({ ...prev, [field.key]: text }));
+                setFormData((prev) => ({
+                  ...prev,
+                  company: { ...prev.company, [field.key]: text },
+                }));
               }}
             />
           </Surface>

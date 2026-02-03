@@ -1,4 +1,4 @@
-export type FieldKey =
+export type StringKeys =
   | "consignee"
   | "company_address"
   | "contact_person"
@@ -7,9 +7,84 @@ export type FieldKey =
 
 export type Field = {
   label: string;
-  key: FieldKey;
+  key: StringKeys;
+};
+
+export type CompanyData = {
+  consignee?: string;
+  company_address?: string;
+  contact_person?: string;
+  contact_number?: string;
+  email?: string;
+};
+
+export type ServiceData = {
+  type?: string;
+  transport_mode?: string;
+  options?: string[];
+};
+
+export type Commodity = {
+  commmodity?: string;
+  cargo_type?: string;
+  cargo_volume?: string;
+  container_size?: string;
+};
+
+export type Shipment = {
+  origin?: string;
+  destination?: string;
 };
 
 export type QuoteForm = {
-    [K in FieldKey]?: string
-}
+  company?: CompanyData;
+  service?: ServiceData;
+  commodity?: Commodity;
+  shipment?: Shipment;
+};
+
+export const initialQuoteForm: QuoteForm = {
+  company: {
+    consignee: "",
+    company_address: "",
+    contact_person: "",
+    contact_number: "",
+    email: "",
+  },
+  service: {
+    type: "",
+    transport_mode: "",
+    options: [],
+  },
+  commodity: {
+    commmodity: "",
+    cargo_type: "",
+    cargo_volume: "",
+    container_size: "",
+  },
+  shipment: {
+    origin: "",
+    destination: "",
+  },
+};
+
+export const transpoMode = ["SEA", "AIR"];
+export const serviceType = ["IMPORT", "EXPORT", "BUSINESS SOLUTION"];
+export const options = [
+  "CUSTOMS CLEARANCE",
+  "PEZA PROCESSING & COMPLIANCE",
+  "CUSTOMS DISPUTE RESOLUTIONS",
+  "POST CLEARANCE SERVICE",
+  "SPECIALIZED ENTRY TYPES",
+  "CUSTOMS AND TRADE CONSULTANCY",
+  "INTERNATIONAL FREIGHT FORWARDING",
+  "DOMESTIC FREIGHT FORWARDING",
+  "TRUCKINGS SERVICES",
+  "PROJECT CARGO",
+];
+
+export type FieldConfig = {
+  label: string;
+  key: keyof CompanyData;
+  required: true;
+};
