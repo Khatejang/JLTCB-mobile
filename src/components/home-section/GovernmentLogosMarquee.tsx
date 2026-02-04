@@ -1,7 +1,7 @@
 import { useIsFocused } from "@react-navigation/native";
 import { Image } from "expo-image";
 import * as Linking from "expo-linking";
-import { type PropsWithChildren, useEffect, useState } from "react";
+import { type PropsWithChildren, useState } from "react";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
 import Animated, {
   type SharedValue,
@@ -97,21 +97,16 @@ const Marquee = ({
   children,
 }: { duration?: number; reverse?: boolean } & PropsWithChildren) => {
   const isFocused = useIsFocused();
-  console.log(isFocused);
   const [parentWidth, setParentWidth] = useState(0);
   const [childrenWidth, setChildrenWidth] = useState(0);
   const offset = useSharedValue(0);
   const coeff = useSharedValue(reverse ? 1 : -1);
 
-  useEffect(() => {
-    coeff.value = reverse ? 1 : -1;
-  }, [reverse]);
-
   useFrameCallback((i) => {
-    if (!childrenWidth) return;
+    if (!childrenWidth || !isFocused) return;
     const delta = (i.timeSincePreviousFrame ?? 1) * (childrenWidth / duration);
     offset.value = (offset.value + coeff.value * delta) % childrenWidth;
-  }, isFocused);
+  });
 
   const count =
     childrenWidth > 0 ? Math.ceil(parentWidth / childrenWidth) + 2 : 0;
