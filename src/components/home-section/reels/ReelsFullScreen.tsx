@@ -29,7 +29,7 @@ export default function ReelsFullScreen() {
   const router = useRouter();
 
   const player = useVideoPlayer(
-    { uri: data?.data.video_path, useCaching: false },
+    { uri: data?.data.video_path, useCaching: true },
     (player) => {
       player.loop = true;
       player.play();
