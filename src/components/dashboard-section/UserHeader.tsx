@@ -1,5 +1,12 @@
 import { Image, ImageBackground } from "expo-image";
-import { Dimensions, View } from "react-native";
+import { Link } from "expo-router";
+import {
+	Dimensions,
+	StyleSheet,
+	type TextStyle,
+	TouchableOpacity,
+	View,
+} from "react-native";
 import { Text } from "react-native-paper";
 import { useAuth } from "@/src/hooks/useAuth";
 
@@ -15,33 +22,63 @@ type UserHeaderProps = {
 export default function UserHeader({ variant = "dark" }: UserHeaderProps) {
 	const { userData } = useAuth();
 
+	const textStyles: TextStyle = {
+		color: variant === "dark" ? "white" : "#1D274E",
+		textTransform: "uppercase",
+	};
+
 	const { width } = Dimensions.get("window");
 	return (
 		<ImageBackground
 			source={BANNERS[variant]}
 			contentFit="cover"
 			contentPosition="bottom"
-			style={{
-				padding: 10,
-				width,
-			}}
+			style={[styles.container, { width }]}
 		>
-			<View style={{ flexDirection: "row", padding: 5, gap: 20 }}>
-				<Image
-					source={require("../../../src/assets/images/profile.png")}
-					style={{ borderRadius: 50, width: 90, height: 90 }}
-				/>
-				<Text
-					style={{
-						color: variant === "dark" ? "white" : "#1D274E",
-						fontWeight: 700,
-						paddingTop: 20,
-					}}
-					variant="titleLarge"
-				>
-					{userData ? userData.full_name : "Loading..."}
-				</Text>
+			<View style={styles.content}>
+				<Link href="/(client)/account-settings" asChild>
+					<TouchableOpacity>
+						<Image
+							source={{ uri: encodeURI(userData?.image_path ?? "") }}
+							style={styles.userImage}
+						/>
+					</TouchableOpacity>
+				</Link>
+				<View style={styles.textContainer}>
+					<Text
+						style={[textStyles, { fontWeight: 700 }]}
+						variant="titleLarge"
+						numberOfLines={1}
+					>
+						{userData ? userData.full_name : "Loading..."}
+					</Text>
+					<Text style={[textStyles, { fontStyle: "italic" }]}>
+						{userData?.company_name}
+					</Text>
+				</View>
 			</View>
 		</ImageBackground>
 	);
 }
+
+const styles = StyleSheet.create({
+	container: {
+		padding: 10,
+	},
+	content: {
+		flexDirection: "row",
+		padding: 5,
+		paddingLeft: 24,
+		gap: 20,
+	},
+	userImage: {
+		borderRadius: 50,
+		width: 90,
+		height: 90,
+	},
+	textContainer: {
+		paddingTop: 4,
+		flex: 1,
+		gap: 4,
+	},
+});
