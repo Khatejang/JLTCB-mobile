@@ -1,114 +1,137 @@
-import {
-	CircleUser,
-	FileSpreadsheet,
-	NotepadTextDashed,
-	Package2,
-	Truck,
-} from "lucide-react-native";
-import type { DashboardFolderSection } from "../types/dashboard";
+import type {
+	AccountSpecialistDashboard,
+	ClientDashboard,
+	DashboardFolderSection,
+} from "../types/dashboard";
 
-export const CLIENT_DB_FOLDER_SECTIONS: DashboardFolderSection[] = [
-	{
-		title: "Shipment",
-		data: [
-			{
-				title: "Ongoing",
-				icon: Truck,
-				href: "/(client)/dashboard",
-			},
-			{
-				title: "Completed",
-				icon: Package2,
-				href: "/(client)/dashboard",
-			},
-		],
-	},
-	{
-		title: "Quotation",
-		data: [
-			{
-				title: "Requested",
-				icon: NotepadTextDashed,
-				href: "/(client)/dashboard",
-			},
-			{
-				title: "Responded",
-				icon: FileSpreadsheet,
-				href: "/(client)/dashboard",
-			},
-		],
-	},
-] as const;
+export const CLIENT_DB_FOLDER_SECTIONS: DashboardFolderSection<ClientDashboard>[] =
+	[
+		{
+			title: "Shipment",
+			sectionKey: "shipments",
+			data: [
+				{
+					title: "Ongoing",
+					countKey: "ongoing_count",
+					icon: "ongoing",
+					href: "/(client)/dashboard",
+				},
+				{
+					title: "Completed",
+					countKey: "completed_count",
+					icon: "delivered",
+					href: "/(client)/dashboard",
+				},
+			],
+		},
+		{
+			title: "Quotation",
+			sectionKey: "quotations",
+			data: [
+				{
+					title: "Requested",
+					countKey: "requested_count",
+					icon: "request-quotation",
+					href: "/(client)/dashboard",
+				},
+				{
+					title: "Responded",
+					countKey: "responded_count",
+					icon: "quotations",
+					href: "/(client)/dashboard",
+				},
+			],
+		},
+	] as const;
 
-export const AS_DB_FOLDER_SECTIONS: DashboardFolderSection[] = [
-	{
-		title: "Leads",
-		data: [
-			{
-				title: "Queries",
-				icon: Package2,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-			{
-				title: "New",
-				icon: Truck,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-			{
-				title: "Replied",
-				icon: Truck,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-		],
-	},
-	{
-		title: "Shipment",
-		data: [
-			{
-				title: "Ongoing",
-				icon: Truck,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-			{
-				title: "Delivered",
-				icon: Package2,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-		],
-	},
-	{
-		title: "Quotations",
-		data: [
-			{
-				title: "New",
-				icon: FileSpreadsheet,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-			{
-				title: "Responded",
-				icon: Package2,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-			{
-				title: "Accepted",
-				icon: Truck,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-			{
-				title: "Discarded",
-				icon: Truck,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-		],
-	},
-	{
-		title: "Accounts",
-		data: [
-			{
-				title: "Clients",
-				icon: CircleUser,
-				href: "/(employee-account-specialist)/dashboard",
-			},
-		],
-	},
-] as const;
+export const AS_DB_FOLDER_SECTIONS: DashboardFolderSection<AccountSpecialistDashboard>[] =
+	[
+		{
+			title: "Leads",
+			sectionKey: "leads",
+			data: [
+				{
+					title: "Queries",
+					countKey: "queries_count",
+					icon: "delivered",
+					href: "/(employee-account-specialist)/dashboard",
+				},
+				{
+					title: "New",
+					countKey: "new_count",
+					icon: "ongoing",
+					href: "/(employee-account-specialist)/dashboard",
+				},
+				{
+					title: "Replied",
+					countKey: "replied_count",
+					icon: "ongoing",
+					href: "/(employee-account-specialist)/dashboard",
+				},
+			],
+		},
+		{
+			title: "Shipment",
+			sectionKey: "shipments",
+			data: [
+				{
+					title: "Ongoing",
+					countKey: "ongoing_count",
+					icon: "ongoing",
+					href: "/(employee-account-specialist)/dashboard",
+				},
+				{
+					title: "Delivered",
+					countKey: "delivered_count",
+					icon: "delivered",
+					href: "/(employee-account-specialist)/dashboard",
+				},
+			],
+		},
+		{
+			title: "Quotations",
+			sectionKey: "quotations",
+			data: [
+				{
+					title: "New",
+					countKey: "new_count",
+					icon: "quotations",
+					href: "/(employee-account-specialist)/dashboard",
+				},
+				{
+					title: "Responded",
+					countKey: "responded_count",
+					icon: "delivered",
+					href: "/(employee-account-specialist)/dashboard",
+				},
+				{
+					title: "Accepted",
+					countKey: "accepted_count",
+					icon: "ongoing",
+					href: "/(employee-account-specialist)/dashboard",
+				},
+				{
+					title: "Discarded",
+					countKey: "discarded_count",
+					icon: "ongoing",
+					href: "/(employee-account-specialist)/dashboard",
+				},
+			],
+		},
+		{
+			title: "Accounts",
+			sectionKey: "accounts",
+			data: [
+				{
+					title: "Clients",
+					countKey: "clients_count",
+					icon: "accounts",
+					iconStyles: {
+						aspectRatio: 23 / 28,
+						height: 26,
+					},
+					href: "/(employee-account-specialist)/dashboard",
+				},
+			],
+		},
+	] as const;

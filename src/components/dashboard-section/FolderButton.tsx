@@ -1,8 +1,9 @@
-import { ImageBackground } from "expo-image";
+import { Image, ImageBackground } from "expo-image";
 import {
 	StyleSheet,
 	TouchableOpacity,
 	type TouchableOpacityProps,
+	View,
 } from "react-native";
 import { Text } from "react-native-paper";
 import type { DashbordFolderItem } from "@/src/types/dashboard";
@@ -29,10 +30,25 @@ export default function FolderButton({
 				style={styles.imageBackground}
 				contentFit="contain"
 			>
-				<folder.icon color="black" size={30} />
-				<Text style={styles.folderText} variant="labelMedium">
-					{folder.title}
-				</Text>
+				<View style={styles.folderContent}>
+					<Image
+						source={{ uri: folder.icon }}
+						style={[
+							folder.iconStyles ?? { aspectRatio: 2823 / 2013, height: 30 },
+							{
+								alignSelf: "center",
+							},
+						]}
+					/>
+					<View style={styles.folderTextWrapper}>
+						<Text style={styles.folderText} variant="labelMedium">
+							{folder.title}
+						</Text>
+						<Text style={styles.folderText} variant="labelMedium">
+							{folder.count}
+						</Text>
+					</View>
+				</View>
 			</ImageBackground>
 		</TouchableOpacity>
 	);
@@ -46,11 +62,20 @@ const styles = StyleSheet.create({
 	imageBackground: {
 		width: "100%",
 		aspectRatio: 111 / 82,
-		justifyContent: "center",
-		alignItems: "center",
+		paddingTop: "17%",
+		paddingBottom: "11%",
+		paddingHorizontal: "12%",
 		gap: 4,
 	},
 	folderText: {
 		textTransform: "uppercase",
+	},
+	folderContent: {
+		flex: 1,
+		justifyContent: "space-between",
+	},
+	folderTextWrapper: {
+		flexDirection: "row",
+		justifyContent: "space-between",
 	},
 });
