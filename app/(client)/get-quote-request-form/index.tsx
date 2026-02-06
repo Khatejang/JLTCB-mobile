@@ -9,6 +9,7 @@ import Step_2 from "../../../src/components/client-section/get-quote/Step_2";
 import Step_3 from "../../../src/components/client-section/get-quote/Step_3";
 import Buttons from "../../../src/components/client-section/get-quote/Buttons";
 import Header from "../../../src/components/client-section/Header";
+import Success from "@/src/components/client-section/get-quote/Success";
 import { postClientQuote } from "@/src/services/ClientQuote";
 import {
   QuoteForm,
@@ -49,19 +50,20 @@ export default function Index() {
 
   const postQuoteFormMutation = useMutation({
     mutationFn: postClientQuote,
-    onSuccess: ({data}) => {
-      console.log("Success", data)
+    onSuccess: ({ data }) => {
+      console.log("Success", data);
+      setCurrentPosition(3);
     },
     onError: (err) => {
-      setError(true)
-      console.log("error",err)
-      console.log("console log ", error)
-    }
-  })
+      setError(true);
+      console.log("error", err);
+      console.log("console log ", error);
+    },
+  });
 
   const handleSumbit = () => {
-    postQuoteFormMutation.mutate(formData)
-  }
+    postQuoteFormMutation.mutate(formData);
+  };
 
   return (
     <>
@@ -95,16 +97,23 @@ export default function Index() {
                   <Step_2 formData={formData} setFormData={setFormData} />
                 )}
                 {currentPosition === 2 && <Step_3 />}
+                <View
+                  style={{ alignItems: "center", justifyContent: "center" }}
+                >
+                  {currentPosition === 3 && <Success />}
+                </View>
               </View>
-
-              <Buttons
-                currentPosition={currentPosition}
-                setCurrentPosition={setCurrentPosition}
-                setError={setError}
-                formData={formData}
-                stepConfigs={stepConfigs}
-                handleSumbit={handleSumbit}
-              />
+              {currentPosition === 2 && (
+                <Buttons
+                  currentPosition={currentPosition}
+                  setCurrentPosition={setCurrentPosition}
+                  setError={setError}
+                  formData={formData}
+                  stepConfigs={stepConfigs}
+                  handleSumbit={handleSumbit}
+                  loading={postQuoteFormMutation.isPending}
+                />
+              )}
             </View>
           </>
         )}

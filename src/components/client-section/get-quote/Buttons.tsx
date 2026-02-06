@@ -9,6 +9,7 @@ type Props = {
   formData: QuoteForm;
   setError: Dispatch<SetStateAction<boolean>>;
   handleSumbit: () => void
+  loading: boolean;
 
   stepConfigs: Record<
     number,
@@ -23,6 +24,7 @@ export default function Buttons({
   formData,
   stepConfigs,
   handleSumbit,
+  loading,
 }: Props) {
   const isStepInvalid = useMemo(() => {
     const config = stepConfigs[currentPosition];
@@ -60,9 +62,7 @@ export default function Buttons({
     setError(false);
     if (currentPosition < 2) {
       setCurrentPosition((prev) => prev + 1);
-    } else {
-      console.log("FINAL SUBMIT:", formData);
-    }
+    } 
   };
 
   return (
@@ -70,6 +70,7 @@ export default function Buttons({
       {currentPosition > 0 ? (
         <Button
           mode="outlined"
+          disabled={loading}
           onPress={() => setCurrentPosition((prev) => prev - 1)}
           style={styles.backBtn}
         >
@@ -82,6 +83,7 @@ export default function Buttons({
       <Button
         style={{ backgroundColor: isStepInvalid ? "#C5C9D6" : "#161F3C" }}
         mode="contained"
+        loading={loading}
         onPress={() => {
           if (currentPosition < 2) {
             handleNext();
