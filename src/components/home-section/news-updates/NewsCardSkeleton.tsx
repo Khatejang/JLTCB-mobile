@@ -1,20 +1,7 @@
-import { ImageBackground } from "expo-image";
-import { Link } from "expo-router";
-import {
-	Dimensions,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
-} from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { Card } from "react-native-paper";
-import type { Article } from "@/src/types/articles";
 
-type NewsCardTemplateProps = {
-	article: Article;
-};
-
-export default function NewsCardTemplate({ article }: NewsCardTemplateProps) {
+export default function NewsCardSkeleton() {
 	// Get screen width
 	const screenWidth = Dimensions.get("window").width;
 
@@ -25,29 +12,19 @@ export default function NewsCardTemplate({ article }: NewsCardTemplateProps) {
 		<Card style={styles.cardContainer} mode="contained">
 			<View style={styles.content}>
 				{/* LEFT: IMAGE */}
-				<Link
-					href={{ pathname: "/home/articles/[id]", params: { id: article.id } }}
-					asChild
+				<View
+					style={[
+						styles.imageBackground,
+						{
+							width: screenWidth * 0.25,
+							height: screenWidth * 0.25,
+						},
+					]}
 				>
-					<TouchableOpacity>
-						<ImageBackground
-							source={article.image_url}
-							style={[
-								styles.imageBackground,
-								{
-									width: screenWidth * 0.25,
-									height: screenWidth * 0.25,
-								},
-							]}
-							imageStyle={{ borderRadius: 8 }}
-							contentFit="cover"
-						>
-							<Text style={styles.textStyle} allowFontScaling={false}>
-								READ MORE
-							</Text>
-						</ImageBackground>
-					</TouchableOpacity>
-				</Link>
+					<Text style={styles.textStyle} allowFontScaling={false}>
+						READ MORE
+					</Text>
+				</View>
 
 				{/* RIGHT: TEXT CONTENT */}
 				<View style={styles.textContent}>
@@ -61,30 +38,21 @@ export default function NewsCardTemplate({ article }: NewsCardTemplateProps) {
 							style={[styles.title_1, { fontSize: scaleFont(9) }]}
 							allowFontScaling={false}
 						>
-							{article.created_at}
+							{/*{article.created_at}*/}
 						</Text>
 
 						<Text
 							style={[styles.title_1, { fontSize: scaleFont(9) }]}
 							allowFontScaling={false}
 						>
-							{article.user}
+							{/*{article.user}*/}
 						</Text>
 					</View>
 
-					<Text
-						style={[styles.title_2, { fontSize: scaleFont(9) }]}
-						allowFontScaling={false}
-					>
-						{article.title}
-					</Text>
-					<Text
-						numberOfLines={3}
-						style={{ fontSize: scaleFont(8) }}
-						allowFontScaling={false}
-					>
-						{article.content}
-					</Text>
+					<View style={styles.title}>{/*{article.title}*/}</View>
+					<View style={[styles.title, { maxWidth: "50%" }]}>
+						{/*{article.content}*/}
+					</View>
 				</View>
 			</View>
 		</Card>
@@ -104,12 +72,18 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	title_1: {
-		backgroundColor: "gray",
+		backgroundColor: "#e8e8e8",
 		paddingHorizontal: 5,
 		color: "white",
+		minWidth: 54,
+		marginBottom: 8,
 	},
-	title_2: {
-		fontWeight: 700,
+	title: {
+		// fontWeight: 700,
+		backgroundColor: "#e8e8e8",
+		width: "100%",
+		height: 8,
+		borderRadius: 20,
 	},
 	imageContainer: {
 		position: "relative",
@@ -133,7 +107,9 @@ const styles = StyleSheet.create({
 		textDecorationLine: "underline",
 	},
 	imageBackground: {
+		borderRadius: 8,
 		justifyContent: "center",
 		alignItems: "center",
+		backgroundColor: "#e8e8e8",
 	},
 });

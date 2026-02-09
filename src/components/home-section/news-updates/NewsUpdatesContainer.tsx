@@ -1,34 +1,51 @@
-import { ScrollView, Text, View, StyleSheet, FlatList } from "react-native";
+import { useQuery } from "@tanstack/react-query";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import { articlesQueryOptions } from "@/src/query-options/articles/articlesQueryOptions";
+import NewsCardSkeleton from "./NewsCardSkeleton";
 import NewsCardTemplate from "./NewsCardTemplate";
 import NewsTabButtons from "./NewsTabButtons";
 
 export default function NewsUpdatesContainer() {
-  const data = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-  ];
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title} allowFontScaling={false}>
-        News and Updates
-      </Text>
-      <NewsTabButtons />
+	const { data, isPending, error } = useQuery(articlesQueryOptions);
 
-      <FlatList
-        data={data}
-        renderItem={({ item }) => <NewsCardTemplate />}
-        keyExtractor={(item, index) => index.toString()}
-        contentContainerStyle={{ paddingBottom: 500 }}
-      />
-    </View>
-  );
+	return (
+		<View style={styles.container}>
+			<Text style={styles.title} allowFontScaling={false}>
+				News and Updates
+			</Text>
+			<NewsTabButtons />
+
+			{isPending ? (
+				<FlatList
+					showsVerticalScrollIndicator={false}
+					data={Array.from({ length: 3 })}
+					renderItem={() => <NewsCardSkeleton />}
+					contentContainerStyle={styles.listContent}
+				/>
+			) : (
+				<FlatList
+					data={data?.data}
+					showsVerticalScrollIndicator={false}
+					renderItem={({ item: article }) => (
+						<NewsCardTemplate article={article} />
+					)}
+					keyExtractor={(item) => String(item.id)}
+					contentContainerStyle={styles.listContent}
+				/>
+			)}
+		</View>
+	);
 }
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    marginBottom: 30,
-  },
-  title: {
-    fontSize: 18,
-  },
+	container: {
+		paddingHorizontal: 20,
+		paddingTop: 10,
+		marginBottom: 30,
+	},
+	listContent: {
+		paddingBottom: 450,
+	},
+	title: {
+		fontSize: 18,
+	},
 });
