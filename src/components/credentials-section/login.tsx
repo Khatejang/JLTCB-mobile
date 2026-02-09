@@ -3,10 +3,9 @@ import { ImageBackground } from "expo-image";
 import { useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { Button } from "react-native-paper";
-
+import { routes } from "@/src/constants/routes";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useNavigate } from "@/src/hooks/useNavigate";
-import { routes } from "@/src/constants/routes";
 
 export default function Login() {
 	const { replace } = useNavigate();
@@ -123,6 +122,7 @@ const styles = StyleSheet.create({
 	input: {
 		borderRadius: 6,
 		padding: 10,
+		color: "black",
 	},
 	button: {
 		backgroundColor: "#1D274E",
