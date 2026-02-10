@@ -11,37 +11,56 @@ import { fetchClientQuote } from "@/src/services/ClientQuote";
 
 export default function Index() {
   const [search, setSearch] = useState<string>("");
-  
+
   const debouncedSearch = useDebounce(search, 500) || "";
 
   const queryKey = ["quotes", "REQUESTED", debouncedSearch];
 
-  const { data, isLoading, isFetching, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey,
-    queryFn: () => fetchClientQuote({ status: "REQUESTED", search: debouncedSearch }),
+    queryFn: () =>
+      fetchClientQuote({ status: "REQUESTED", search: debouncedSearch }),
     placeholderData: (previousData) => previousData,
   });
 
-  console.log(`Status: ${isLoading ? 'Loading' : 'Idle'}, Fetching: ${isFetching}, Data:`, data);
+  const tableHeader = ["commodity", "date requested"];
+
+  const menuItems = [
+      {
+        iconName: "pencil",
+        title: "edit",
+        color: "black",
+      },
+      { iconName: "delete", title: "delete", color: "red" },
+    ]
+
+
 
   return (
     <View style={{ flex: 1 }}>
       <Header title={"REQUESTED QUOTATION"} route={routes.CLIENT_DB} />
-      
-      <TextInput 
+
+      <TextInput
         label="Search quotes..."
-        value={search} 
-        onChangeText={setSearch} 
+        value={search}
+        onChangeText={setSearch}
         mode="outlined"
-        style={{ margin: 10, height: 50}}
+        style={{ margin: 10, height: 50 }}
       />
 
       {isLoading && !data ? (
         <ActivityIndicator animating={true} style={{ marginTop: 20 }} />
       ) : isError ? (
-        <Text style={{ color: 'red', textAlign: 'center' }}>Error: {error?.message}</Text>
+        <Text style={{ color: "red", textAlign: "center" }}>
+          Error: {error?.message}
+        </Text>
       ) : (
-        <Table/>
+        <Table
+          data={data as any}
+          tableHeader={(tableHeader as string[]) || []}
+          isLoading={isLoading}
+          menuItems={menuItems}
+        />
       )}
     </View>
   );
