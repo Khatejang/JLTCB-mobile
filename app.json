@@ -17,6 +17,7 @@
     "android": {
       "package": "com.jltcb.jltcbapp",
       "versionCode": 2,
+      "permissions": ["INTERNET"],
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/appImage.png",
         "backgroundColor": "#E6F4FE"
@@ -45,6 +46,14 @@
         "expo-asset",
         {
           "assets": ["./src/assets/dashboard-folder-icons"]
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
         }
       ]
     ],
