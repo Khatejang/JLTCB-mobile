@@ -16,8 +16,8 @@
     },
     "android": {
       "package": "com.jltcb.jltcbapp",
-      "versionCode": 2,
-      "permissions": ["INTERNET"],
+      "versionCode": 3,
+      "permissions": ["INTERNET", "ACCESS_NETWORK_STATE"],
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/appImage.png",
         "backgroundColor": "#E6F4FE"
