@@ -2,7 +2,7 @@
   "expo": {
     "name": "JLTCB",
     "slug": "JLTCB",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "orientation": "portrait",
     "scheme": "jltcb",
     "userInterfaceStyle": "automatic",
@@ -16,6 +16,7 @@
     },
     "android": {
       "package": "com.jltcb.jltcbapp",
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/appImage.png",
         "backgroundColor": "#E6F4FE"
