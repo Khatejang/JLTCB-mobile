@@ -1,7 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
-import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+	FlatList,
+	RefreshControl,
+	StyleSheet,
+	TouchableOpacity,
+	View,
+} from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 import FolderSection from "@/src/components/dashboard-section/FolderSection";
 import UserHeader from "@/src/components/dashboard-section/UserHeader";
@@ -13,13 +19,16 @@ import { mapDashboardData } from "@/src/utils/mapDashboardData";
 
 export default function Index() {
 	const { userData } = useAuth();
-	const { data, isPending, error } = useQuery({
+	const { data, isPending, error, isRefetching, refetch } = useQuery({
 		...dashboardQueryOptions<AccountSpecialistDashboard>(userData?.id),
 		select: ({ data }) => mapDashboardData(data, AS_DB_FOLDER_SECTIONS),
 	});
 
 	return (
 		<FlatList
+			refreshControl={
+				<RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+			}
 			contentContainerStyle={[
 				styles.container,
 				{ flex: isPending ? 1 : undefined },
