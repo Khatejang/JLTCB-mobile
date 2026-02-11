@@ -93,10 +93,10 @@ export const AS_DB_FOLDER_SECTIONS: DashboardFolderSection<AccountSpecialistDash
 			sectionKey: "quotations",
 			data: [
 				{
-					title: "New",
+					title: "Requests",
 					countKey: "new_count",
 					icon: "quotations",
-					href: "/(employee-account-specialist)/dashboard",
+					href: "/(employee-account-specialist)/quotations/new-request",
 				},
 				{
 					title: "Responded",
