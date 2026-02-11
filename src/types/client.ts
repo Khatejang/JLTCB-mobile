@@ -11,9 +11,13 @@ export type QuoteForm = {
 };
 
 
-export type QuoteParams = {
+export type QuotesParams = {
   status?: "REQUESTED" | "RESPONDED";
   search?: string;
+}
+
+export type QuoteParam = {
+  id?: number
 }
 
 export type StringKeys =
@@ -104,3 +108,35 @@ export const container_size = [
   { image: Container20, size: "1x20" },
   { image: Container40, size: "1x40" },
 ];
+
+export type ConsigneeDetails = {
+  company_address: string;
+  company_name: string;
+  contact_number: string;
+  contact_person: string;
+  email: string;
+}
+
+export type GeneralInfo = {
+  account_specialist_id: number;
+  client_id: number;
+  reference_number: string;
+  status: "REQUESTED" | "PENDING" | "COMPLETED"; // Add other status strings as needed
+}
+
+export type ShipmentDetails = {
+  commodity: string;
+  created_at: string;
+  destination: string;
+  origin: string;
+  service_type: string;
+  transport_mode: string;
+  updated_at: string;
+  volume: string;
+}
+
+export type ClientQuoteResponse = {
+  consignee_details: ConsigneeDetails;
+  general_info: GeneralInfo;
+  shipment_details: ShipmentDetails;
+}

@@ -2,7 +2,6 @@ import type { Href } from "expo-router";
 
 export const routes = {
 	HOME: "/(pages)/home",
-	GOVERNANCE: "/(pages)/governance",
 	ABOUT: "/(pages)/about-us",
 	CONTACT: "/(pages)/contact-us",
 	SERVICES: "/(pages)/services",
@@ -15,6 +14,8 @@ export const routes = {
 	CAREERS: "/(pages)/careers",
 	SIGN_IN: "/(pages)/sign-in",
 	CLIENT_DB: "/(client)/dashboard",
+	CLIENT_QUOTATION_RECORDS: "/(client)/requested-quote",
+	CLIENT_QUOTATION_RECORD: "/(client)/requested-quote/QuoteDetails",
 	AS_DB: "/(employee-account-specialist)/dashboard",
 	MARKETING_DB: "/(employee-marketing)/dashboard",
 	QUEOTE_REQUEST: "/(client)/get-quote-request-form",

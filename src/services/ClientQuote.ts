@@ -1,7 +1,6 @@
-import { QuoteForm, QuoteParams} from "./../types/client";
+import { QuoteForm, QuotesParams, ClientQuoteResponse} from "./../types/client";
 import { apiPost, apiGet } from "./axiosInstance";
 import * as SecureStore from "expo-secure-store";
-
 
 //Post Quote
 export async function postClientQuote(formData: QuoteForm) {
@@ -10,7 +9,7 @@ export async function postClientQuote(formData: QuoteForm) {
   if (!token) throw new Error("No authentication token found");
 
   const response = await apiPost<{ data: any }, QuoteForm>(
-    "quotations",
+    `quotations`,
     formData,
     {
       headers: {
@@ -23,7 +22,7 @@ export async function postClientQuote(formData: QuoteForm) {
 }
 
 // Get all of the client Quote
-export async function fetchClientQuote({ status, search }: QuoteParams) {
+export async function fetchClientQuotes({ status, search }: QuotesParams) {
   const token = await SecureStore.getItemAsync("token");
 
   if (!token) throw new Error("No authentication token found");
@@ -33,7 +32,7 @@ export async function fetchClientQuote({ status, search }: QuoteParams) {
       search: search || undefined,
     }
 
-  const response = await apiGet("quotations", {
+  const response = await apiGet(`quotations`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -41,3 +40,19 @@ export async function fetchClientQuote({ status, search }: QuoteParams) {
   });
   return response.data;
 }
+
+//Get PER Quotation of the Client
+export async function fetchClientQuote(id: number): Promise<ClientQuoteResponse> {
+  const token = await SecureStore.getItemAsync("token");
+
+  if (!token) throw new Error("No authentication token found");
+
+  const response = await apiGet<ClientQuoteResponse>(`quotations/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+

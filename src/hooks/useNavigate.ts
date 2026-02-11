@@ -29,6 +29,7 @@ export function useNavigate(options?: Options) {
   };
 
   const replace = (path:Path) => {
+    options?.beforeNavigate?.();
     if(typeof path === "string"){
         router.replace(path as any)
     } else {
