@@ -62,9 +62,9 @@ export default function Details({id} : Props) {
 
   if (isLoading) {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1,}}>
         <ActivityIndicator animating={true} />
-        <Text style={{ marginTop: 10 }}>Fetching quote details...</Text>
+        <Text style={{ marginTop: 10, textAlign:"center" }}>Fetching quote details...</Text>
       </View>
     );
   }

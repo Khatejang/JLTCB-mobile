@@ -44,7 +44,7 @@ export default function QuoteDetails() {
       keyExtractor={(item) => item.toString()}
       renderItem={({}) => (
         <>
-          <Header title={title} route={routes.CLIENT_QUOTATION_RECORDS} />
+          <Header title={title} route={routes.CLIENT_REQ_QUOTE_RECORDS} />
 
           <View style={styles.buttonContainer}>
             {tabs.map((t, i) => (

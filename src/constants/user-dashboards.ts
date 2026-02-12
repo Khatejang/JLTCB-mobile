@@ -1,3 +1,4 @@
+import { Href } from "expo-router";
 import type {
 	AccountSpecialistDashboard,
 	ClientDashboard,
@@ -38,7 +39,7 @@ export const CLIENT_DB_FOLDER_SECTIONS: DashboardFolderSection<ClientDashboard>[
 					title: "Responded",
 					countKey: "responded_count",
 					icon: "quotations",
-					href: "/(client)/dashboard",
+					href: "/(client)/responded-quote" as Href,
 				},
 			],
 		},

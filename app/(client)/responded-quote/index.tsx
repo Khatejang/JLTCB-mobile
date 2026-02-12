@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import {
-  TextInput,
   ActivityIndicator,
-  Text,
   DataTable,
   Menu,
   IconButton,
@@ -13,10 +11,9 @@ import { useQuery } from "@tanstack/react-query";
 
 import Header from "@/src/components/client-section/Header";
 import { routes } from "@/src/constants/routes";
-import useDebounce from "@/src/hooks/useDebounce";
 import { fetchClientQuotes } from "@/src/services/ClientQuote";
 import { useNavigate } from "@/src/hooks/useNavigate";
-import { Scroll } from "lucide-react-native";
+
 
 type TableItem = {
   id: number;
@@ -26,7 +23,7 @@ type TableItem = {
   status: string;
 };
 
-const tableHeaders = ["commodity", "date requested"];
+const tableHeaders = ["reference", "date", "shipment details", " status", ""];
 
 const menuItems = [
   { iconName: "pencil", title: "edit", color: "black" },
@@ -34,17 +31,14 @@ const menuItems = [
 ];
 
 export default function Index() {
-  const [search, setSearch] = useState<string>("");
   const [visibleMenuId, setVisibleMenuId] = useState<number | null>(null);
   const { navigate } = useNavigate();
 
-  const debouncedSearch = useDebounce(search, 500) || "";
-
   // Data Fetching
-  const { data, isLoading } = useQuery({
-    queryKey: ["quotes", "REQUESTED", debouncedSearch],
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["RESPONDED"],
     queryFn: () =>
-      fetchClientQuotes({ status: "REQUESTED", search: debouncedSearch }),
+      fetchClientQuotes({ status: "RESPONDED", }),
     placeholderData: (previousData) => previousData,
   });
 
@@ -52,30 +46,25 @@ export default function Index() {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <Header title={"REQUESTED QUOTATION"} route={routes.CLIENT_DB} />
+      <Header title={"QUOTATIONS"} route={routes.CLIENT_DB} />
 
-      <TextInput
-        label="Search quotes..."
-        value={search}
-        onChangeText={setSearch}
-        mode="outlined"
-        style={styles.searchBar}
-      />
-
-      <DataTable style={{ flex: 1 }}>
+      <DataTable>
         <DataTable.Header style={styles.header}>
-          {tableHeaders.map((header) => (
-            <DataTable.Title
-              key={header}
-              style={styles.headerTitle}
-              textStyle={styles.headerText}
-            >
-              {header.toUpperCase()}
-            </DataTable.Title>
-          ))}
+          {tableHeaders.map((header, index) => {
+            const flexValues = [2, 0, 2.5, 1, 0];
+            const flexValue = flexValues[index] || 1;
+            return (
+              <DataTable.Title
+                key={index}
+                style={{ flex: flexValue }}
+                textStyle={styles.headerText}
+              >
+                {header.toUpperCase()}
+              </DataTable.Title>
+            );
+          })}
         </DataTable.Header>
-
-        {isLoading && !data ? (
+        {isLoading ? (
           <ActivityIndicator animating={true} style={{ marginTop: 40 }} />
         ) : (
           <ScrollView>
@@ -94,11 +83,28 @@ export default function Index() {
                     textStyle={styles.cellText}
                     style={{ flex: 1.5 }}
                   >
+                    {item.reference_number}
+                  </DataTable.Cell>
+
+                  <DataTable.Cell
+                    textStyle={styles.cellText}
+                    style={{ flex: 1 }}
+                  >
+                    {item.date}
+                  </DataTable.Cell>
+
+                  <DataTable.Cell
+                    textStyle={styles.cellText}
+                    style={{ flex: 2.5 }}
+                  >
                     {item.commodity}
                   </DataTable.Cell>
 
-                  <DataTable.Cell textStyle={styles.cellText}>
-                    {item.date}
+                  <DataTable.Cell
+                    textStyle={styles.cellText}
+                    style={{ flex: 1 }}
+                  >
+                    {item.status}
                   </DataTable.Cell>
 
                   <DataTable.Cell numeric style={{ flex: 0.5 }}>
@@ -118,6 +124,7 @@ export default function Index() {
                           key={index}
                           onPress={() => {
                             console.log(`${menu.title} clicked for ${item.id}`);
+
                             setVisibleMenuId(null);
                           }}
                           leadingIcon={({ size }) => (
@@ -151,12 +158,10 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: "#cecece",
-    height: 25,
     paddingVertical: 0,
     marginVertical: 0,
     justifyContent: "center",
   },
-
   headerTitle: {
     flex: 2,
     height: 25,
@@ -174,6 +179,7 @@ const styles = StyleSheet.create({
   },
   cellText: {
     fontWeight: "500",
+    fontSize: 10.5,
   },
   errorText: {
     color: "red",
