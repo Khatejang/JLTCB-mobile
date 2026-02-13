@@ -12,7 +12,7 @@ import { mapDashboardData } from "@/src/utils/mapDashboardData";
 export default function Index() {
 	const { userData } = useAuth();
 	const { data, isPending, error, isRefetching, refetch } = useQuery({
-		...dashboardQueryOptions<ClientDashboard>(userData?.id),
+		...dashboardQueryOptions<ClientDashboard>(String(userData?.id)),
 		select: ({ data }) => mapDashboardData(data, CLIENT_DB_FOLDER_SECTIONS),
 	});
 

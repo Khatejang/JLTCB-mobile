@@ -17,11 +17,15 @@ const MENUS = [
 ];
 
 interface QuotationRequestDocumentCardProps {
-	document: Document;
+	document: Partial<Document> & { file_name: string };
+	showRemoveButton?: boolean;
+	onRemove?: () => void;
 }
 
 export default function QuotationRequestDocumentCard({
 	document,
+	showRemoveButton,
+	onRemove,
 }: QuotationRequestDocumentCardProps) {
 	const [visible, setVisible] = useState(false);
 
@@ -32,27 +36,31 @@ export default function QuotationRequestDocumentCard({
 				<Text style={styles.title}>{document.file_name}</Text>
 				{/*<Text>{document.date}</Text>*/}
 			</View>
-			<Menu
-				anchor={
-					<IconButton
-						icon="dots-vertical"
-						size={20}
-						onPress={() => setVisible(true)}
-					/>
-				}
-				visible={visible}
-				onDismiss={() => setVisible(false)}
-				anchorPosition="bottom"
-			>
-				{MENUS.map((menu) => (
-					<Menu.Item
-						key={menu.title}
-						title={menu.title}
-						onPress={menu.onPress}
-						leadingIcon={menu.leadingIcon}
-					/>
-				))}
-			</Menu>
+			{showRemoveButton ? (
+				<IconButton icon="close" size={20} onPress={onRemove} />
+			) : (
+				<Menu
+					anchor={
+						<IconButton
+							icon="dots-vertical"
+							size={20}
+							onPress={() => setVisible(true)}
+						/>
+					}
+					visible={visible}
+					onDismiss={() => setVisible(false)}
+					anchorPosition="bottom"
+				>
+					{MENUS.map((menu) => (
+						<Menu.Item
+							key={menu.title}
+							title={menu.title}
+							onPress={menu.onPress}
+							leadingIcon={menu.leadingIcon}
+						/>
+					))}
+				</Menu>
+			)}
 		</View>
 	);
 }

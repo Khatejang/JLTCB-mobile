@@ -23,6 +23,9 @@ export const routes = {
 		"/(employee-account-specialist)/quotations/new-request/request-list",
 	AS_QUOTE_REQUEST:
 		"/(employee-account-specialist)/quotations/new-request/[id]",
+	AS_QUOTE_REQUEST_UPLOAD:
+		"/(employee-account-specialist)/quotations/new-request/[id]/upload",
+	AS_QUOTE_RESPONDED: "/(employee-account-specialist)/quotations/responded",
 	MARKETING_DB: "/(employee-marketing)/dashboard",
 	QUEOTE_REQUEST: "/(client)/get-quote-request-form",
 	CHATBOX: "/(client)/chatbox",

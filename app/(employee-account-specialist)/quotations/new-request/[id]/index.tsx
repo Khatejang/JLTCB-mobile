@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useLocalSearchParams } from "expo-router";
+import { Link, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import {
 	FlatList,
@@ -13,6 +13,7 @@ import { ActivityIndicator, Button } from "react-native-paper";
 import QuotationRequestDetailCard from "@/src/components/quote-section/QuotationRequestDetailCard";
 import QuotationRequestDocumentCard from "@/src/components/quote-section/QuotationRequestDocumentCard";
 import BannerHeader from "@/src/components/ui/BannerHeader";
+import { routes } from "@/src/constants/routes";
 import { quotationQueryOptions } from "@/src/query-options/quotations/quotationQueryOptions";
 import type { Document, QuotationDetailsSection } from "@/src/types/quotations";
 
@@ -111,13 +112,21 @@ export default function Quotation() {
 			}
 			ListFooterComponent={
 				!isPending && !error && isTabActive("Details") ? (
-					<Button
-						mode="contained"
+					<Link
+						asChild
+						href={{
+							pathname: routes.AS_QUOTE_REQUEST_UPLOAD,
+							params: { id, clientName },
+						}}
 						style={[styles.button, styles.container]}
-						labelStyle={{ textTransform: "uppercase" }}
 					>
-						Make Quotation
-					</Button>
+						<Button
+							mode="contained"
+							labelStyle={{ textTransform: "uppercase" }}
+						>
+							Upload Quotation
+						</Button>
+					</Link>
 				) : null
 			}
 		/>
